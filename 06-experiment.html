@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 06 — ИИ без код: платформи и експеримент</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+        :root {
+            --red: #DC4E40;
+            --blue: #2C3781;
+            --blue-dark: #1a2456;
+            --blue-light: #3d4a9e;
+            --red-light: #e8736a;
+            --white: #ffffff;
+            --off-white: #f0f0f0;
+            --gray: #94a3b8;
+            --dark: #0c1028;
+            --green: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--white);
+        }
+
+        /* ── Slide Container ── */
+        .deck {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ── Backgrounds ── */
+        .bg-blue {
+            background: var(--blue);
+            background-image:
+                linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-light) 100%);
+        }
+
+        .bg-dark {
+            background: var(--dark);
+            background-image:
+                linear-gradient(180deg, #0c1028 0%, #141a3a 100%);
+        }
+
+        .bg-red {
+            background: var(--red);
+            background-image:
+                linear-gradient(135deg, #b83a2f 0%, var(--red) 50%, var(--red-light) 100%);
+        }
+
+        .bg-white {
+            background: #ffffff;
+            color: #1a1a2e;
+        }
+
+        .bg-white .slide-number {
+            color: rgba(0, 0, 0, 0.25);
+        }
+
+        .bg-white::before {
+            display: none;
+        }
+
+        /* ── Grid overlay ── */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* ── Corner accent ── */
+        .accent-corner {
+            position: absolute;
+            width: 120px;
+            height: 6px;
+            background: var(--red);
+        }
+
+        .accent-corner.top-left {
+            top: 40px;
+            left: 40px;
+        }
+
+        .accent-corner.top-left::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 120px;
+            background: var(--red);
+            top: 0;
+            left: 0;
+        }
+
+        /* ── Typography ── */
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 44px;
+            right: 80px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: clamp(18px, 2vw, 24px);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 1.8vw, 22px);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            max-width: 700px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 16px;
+            padding: 6px 0;
+            border-bottom: 2px solid var(--red);
+        }
+
+        .bg-red .tag {
+            color: var(--white);
+            border-bottom-color: var(--white);
+        }
+
+        .bg-white .tag {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+        /* ── Content blocks ── */
+        .content-block {
+            position: relative;
+            z-index: 1;
+        }
+
+        .big-number {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(80px, 12vw, 160px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.06);
+            position: absolute;
+            right: 80px;
+            bottom: 60px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .bg-white .big-number {
+            color: rgba(0, 0, 0, 0.04);
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+            margin: 16px 0;
+        }
+
+        .bg-red .divider {
+            background: var(--white);
+        }
+
+        .bg-white .divider {
+            background: var(--red);
+        }
+
+        /* ── Meta info strip ── */
+        .meta-strip {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .meta-item {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 1px;
+        }
+
+        .meta-item span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ── Platform cards ── */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+            max-width: 1100px;
+        }
+
+        .platform-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px 20px;
+            position: relative;
+            text-align: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+        }
+
+        .platform-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .platform-icon {
+            font-size: 36px;
+            margin-bottom: 14px;
+        }
+
+        .platform-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .platform-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+        }
+
+        .platform-tag {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            margin-top: 12px;
+            background: rgba(220, 78, 64, 0.12);
+            color: var(--red-light);
+            border: 1px solid rgba(220, 78, 64, 0.2);
+        }
+
+        .platform-tag.free {
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--green);
+            border-color: rgba(74, 222, 128, 0.2);
+        }
+
+        .bg-white .platform-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .bg-white .platform-card:hover {
+            border-color: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .bg-white .platform-name {
+            color: #1a1a2e;
+        }
+
+        .bg-white .platform-desc {
+            color: rgba(0, 0, 0, 0.55);
+        }
+
+        /* ── Facts grid ── */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+        }
+
+        .bg-white .fact-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .bg-white .fact-card::before {
+            background: var(--red);
+        }
+
+        .fact-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .fact-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .bg-white .fact-title {
+            color: #1a1a2e;
+        }
+
+        .fact-text {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .bg-white .fact-text {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* ── Bullet list ── */
+        .bullet-list {
+            list-style: none;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.4;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .bg-red .bullet-list li::before {
+            background: var(--white);
+        }
+
+        .bg-blue .bullet-list li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .bg-blue .bullet-list li::before {
+            background: var(--off-white);
+        }
+
+        .bg-white .bullet-list li {
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+        .bg-white .bullet-list li::before {
+            background: var(--red);
+        }
+
+        /* ── Discussion prompt ── */
+        .discussion-prompt {
+            margin-top: 28px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 4px solid var(--red);
+            max-width: 700px;
+        }
+
+        .discussion-prompt .prompt-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 6px;
+        }
+
+        .discussion-prompt .prompt-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+        }
+
+        .bg-red .discussion-prompt {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: var(--white);
+        }
+
+        .bg-red .discussion-prompt .prompt-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .bg-red .discussion-prompt .prompt-text {
+            color: var(--white);
+        }
+
+        .bg-white .discussion-prompt {
+            background: rgba(0, 0, 0, 0.04);
+            border-left-color: var(--red);
+        }
+
+        .bg-white .discussion-prompt .prompt-label {
+            color: var(--red);
+        }
+
+        .bg-white .discussion-prompt .prompt-text {
+            color: #1a1a2e;
+        }
+
+        .bg-blue .discussion-prompt {
+            background: rgba(255, 255, 255, 0.08);
+            border-left-color: var(--off-white);
+        }
+
+        .bg-blue .discussion-prompt .prompt-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bg-blue .discussion-prompt .prompt-text {
+            color: var(--white);
+        }
+
+        /* ── Compare grid ── */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .compare-col h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .compare-col.can h3 {
+            color: var(--green);
+        }
+
+        .compare-col.cannot h3 {
+            color: var(--red-light);
+        }
+
+        .compare-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .compare-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+
+        .compare-col.can .compare-item {
+            border-top: 3px solid var(--green);
+        }
+
+        .compare-col.cannot .compare-item {
+            border-top: 3px solid var(--red);
+        }
+
+        .compare-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .bg-white .compare-item {
+            background: rgba(0, 0, 0, 0.03);
+            color: #1a1a2e;
+        }
+
+        /* ── Recap list ── */
+        .recap-list {
+            list-style: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .recap-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 0;
+        }
+
+        .recap-list li .check {
+            color: var(--green);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ── Steps grid ── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .step-card {
+            background: rgba(44, 55, 129, 0.15);
+            border: 1px solid rgba(44, 55, 129, 0.25);
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--blue);
+        }
+
+        .step-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue-light);
+            margin-bottom: 8px;
+        }
+
+        .step-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+        }
+
+        .step-card + .step-card::after {
+            content: '\2192';
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ── Final CTA ── */
+        .final-message {
+            margin-top: 32px;
+            padding: 24px 28px;
+            background: rgba(220, 78, 64, 0.08);
+            border: 1px solid rgba(220, 78, 64, 0.2);
+            max-width: 700px;
+        }
+
+        .final-message p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .final-message strong {
+            color: var(--white);
+        }
+
+        /* ── Navigation ── */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(12, 16, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+        }
+
+        .nav-progress {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .nav-dot {
+            width: 32px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            transition: background 0.3s, width 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--red);
+            width: 48px;
+        }
+
+        .nav-dot:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: var(--white);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-info {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ── Fullscreen btn ── */
+        .fs-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(12, 16, 40, 0.6);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 101;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fs-btn:hover {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── Thank you slide ── */
+        .thankyou-logos-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .thankyou-logos-top img {
+            height: 54px;
+            object-fit: contain;
+        }
+
+        .thankyou-center {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .thankyou-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 12px;
+        }
+
+        .thankyou-meta-item {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        .thankyou-meta-item span {
+            color: #444;
+        }
+
+        .thankyou-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .thankyou-bottom-logo {
+            flex-shrink: 0;
+        }
+
+        .thankyou-bottom-logo img {
+            height: 44px;
+            object-fit: contain;
+        }
+
+        .thankyou-project-text {
+            font-size: 8.5px;
+            color: #888;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.4;
+            letter-spacing: 0.2px;
+            flex: 1;
+        }
+
+        /* ── Slide entrance animations ── */
+        .slide.active .anim-up {
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .slide.active .anim-up-d1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d5 {
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="deck" id="deck">
+
+        <!-- ═══════════════ SLIDE 0: Section Title ═══════════════ -->
+        <div class="slide bg-blue active" data-slide="0">
+            <div class="content-block" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Тема 06</div>
+                <h1 class="anim-up anim-up-d1">ИИ без код:<br>платформи и експеримент</h1>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white); margin: 12px auto;"></div>
+                <p class="subtitle anim-up anim-up-d3" style="color: rgba(255,255,255,0.7); text-align: center;">
+                    Не е нужно да програмирате — достатъчно е да знаете кой инструмент за какво служи
+                </p>
+                <div class="meta-strip anim-up anim-up-d4" style="justify-content: center;">
+                    <div class="meta-item">МОДУЛ <span>// I</span></div>
+                    <div class="meta-item">ТЕМА <span>// No-code ИИ</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 1: Преглед на платформите ═══════════════ -->
+        <div class="slide bg-dark" data-slide="1">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">02 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Инструменти</div>
+                <h2 class="anim-up anim-up-d1">5 платформи, които можете да<br>използвате днес</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="platform-grid anim-up anim-up-d3">
+                    <div class="platform-card">
+                        <div class="platform-icon">🤖</div>
+                        <div class="platform-name">ChatGPT</div>
+                        <div class="platform-desc">Универсален ИИ асистент. Текст, анализ, код, изображения. Custom GPTs за специализирани задачи.</div>
+                        <div class="platform-tag free">Безплатен план</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">🧠</div>
+                        <div class="platform-name">Claude</div>
+                        <div class="platform-desc">Силен в дълги документи и анализ. Projects за персонализиран контекст без код.</div>
+                        <div class="platform-tag free">Безплатен план</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">💎</div>
+                        <div class="platform-name">Gemini</div>
+                        <div class="platform-desc">Google ИИ. Интеграция с Google Workspace — Docs, Sheets, Gmail.</div>
+                        <div class="platform-tag free">Безплатен план</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">🔍</div>
+                        <div class="platform-name">Perplexity</div>
+                        <div class="platform-desc">ИИ търсачка с цитирани източници. Идеален за проучвания и проверка на факти.</div>
+                        <div class="platform-tag free">Безплатен план</div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">📎</div>
+                        <div class="platform-name">Microsoft Copilot</div>
+                        <div class="platform-desc">Вграден в Word, Excel, Outlook, Teams. Директно в инструментите, които вече ползвате.</div>
+                        <div class="platform-tag">Microsoft 365</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">02</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 2: ChatGPT & Claude ═══════════════ -->
+        <div class="slide bg-white" data-slide="2">
+            <div class="slide-number mono">03 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">ChatGPT & Claude</div>
+                <h2 class="anim-up anim-up-d1">Универсални ИИ асистенти</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="compare-grid anim-up anim-up-d3">
+                    <div class="compare-col can">
+                        <h3 style="color: #1a1a2e;">ChatGPT</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Custom GPTs — създавате асистент с инструкции и файлове, без код
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Генериране на изображения с DALL-E
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Анализ на файлове — PDF, Excel, CSV, Word
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Гласов режим за разговор с ИИ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col can">
+                        <h3 style="color: #1a1a2e;">Claude</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Projects — качвате документи и ИИ ги „знае" при всеки разговор
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Отлично обработва дълги текстове (до 200 стр.)
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                По-внимателен с нюанси и двусмислици
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Artifacts — генерира документи и визуализации директно
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4">
+                    <div class="prompt-label">Практически съвет</div>
+                    <div class="prompt-text">Използвайте ChatGPT за бързи задачи и генериране на съдържание, Claude — за работа с дълги документи и сложен анализ.</div>
+                </div>
+            </div>
+
+            <div class="big-number">03</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 3: Gemini & Perplexity ═══════════════ -->
+        <div class="slide bg-dark" data-slide="3">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">04 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Gemini & Perplexity</div>
+                <h2 class="anim-up anim-up-d1">Търсене, проучване и Google екосистема</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="compare-grid anim-up anim-up-d3">
+                    <div class="compare-col can">
+                        <h3>Gemini</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Работи директно в Google Docs, Sheets и Gmail
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                „Help me write" — генерира текст в контекста на документа
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Анализ на таблици и автоматични формули в Sheets
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Безплатен достъп чрез gemini.google.com
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col can">
+                        <h3>Perplexity</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Всяко твърдение идва с линк към източника
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Идеален за проверка на факти и нормативни документи
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Търси в реално време — актуална информация
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Spaces — споделени колекции от проучвания
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4">
+                    <div class="prompt-label">Практически съвет</div>
+                    <div class="prompt-text">Gemini е идеален ако вече ползвате Google Workspace. Perplexity — когато трябва да проверите информация с източници.</div>
+                </div>
+            </div>
+
+            <div class="big-number">04</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 4: Microsoft Copilot ═══════════════ -->
+        <div class="slide bg-blue" data-slide="4">
+            <div class="slide-number mono">05 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Microsoft Copilot</div>
+                <h2 class="anim-up anim-up-d1">ИИ, вграден в инструментите ви</h2>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+
+                <div class="facts-grid anim-up anim-up-d3" style="max-width: 1000px;">
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">📝</div>
+                        <div class="fact-title">Word</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Генериране на черновa, пренаписване на текст, обобщаване на документ — директно в Word</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">📊</div>
+                        <div class="fact-title">Excel</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Анализ на данни с естествен език: „Покажи тенденциите за последната година"</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">📧</div>
+                        <div class="fact-title">Outlook</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Обобщаване на имейл нишки, генериране на отговори, приоритизиране на съобщения</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">👥</div>
+                        <div class="fact-title">Teams</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Обобщение на среща, списък с решения и задачи — автоматично от записа</div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.08); border-left-color: var(--off-white);">
+                    <div class="prompt-label" style="color: rgba(255,255,255,0.6);">Важно</div>
+                    <div class="prompt-text" style="color: var(--white);">Copilot изисква Microsoft 365 лиценз. Ако организацията ви го има — вече имате ИИ на работното място.</div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">05</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 5: Кой инструмент за коя задача ═══════════════ -->
+        <div class="slide bg-white" data-slide="5">
+            <div class="slide-number mono">06 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Навигатор</div>
+                <h2 class="anim-up anim-up-d1">Кой инструмент за коя задача?</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="facts-grid anim-up anim-up-d3" style="max-width: 1000px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <div class="fact-card">
+                        <div class="fact-icon">✉️</div>
+                        <div class="fact-title">Писмо / отговор</div>
+                        <div class="fact-text">ChatGPT, Claude или Copilot (Word)</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">📊</div>
+                        <div class="fact-title">Анализ на данни</div>
+                        <div class="fact-text">ChatGPT (CSV upload), Copilot (Excel) или Gemini (Sheets)</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🔎</div>
+                        <div class="fact-title">Проучване с източници</div>
+                        <div class="fact-text">Perplexity — всеки отговор с цитирани линкове</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">📄</div>
+                        <div class="fact-title">Обобщение на документ</div>
+                        <div class="fact-text">Claude (дълги документи), ChatGPT или Copilot (Word)</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🌍</div>
+                        <div class="fact-title">Превод</div>
+                        <div class="fact-text">Claude или ChatGPT — запазват стила и контекста</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🤖</div>
+                        <div class="fact-title">Персонализиран асистент</div>
+                        <div class="fact-text">ChatGPT Custom GPTs или Claude Projects</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">06</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 6: Задача — Експеримент ═══════════════ -->
+        <div class="slide bg-red" data-slide="6">
+            <div class="slide-number mono">07 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Ваш ред</div>
+                <h2 class="anim-up anim-up-d1">Експериментирайте: 5–7 минути</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="steps-grid anim-up anim-up-d3" style="max-width: 900px;">
+                    <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
+                        <div class="step-number" style="color: rgba(255,255,255,0.6);">01</div>
+                        <div class="step-icon">🎯</div>
+                        <div class="step-title" style="color: var(--white);">Изберете задача</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Една рутинна задача от работата ви, която правите ежедневно или ежеседмично</div>
+                    </div>
+                    <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
+                        <div class="step-number" style="color: rgba(255,255,255,0.6);">02</div>
+                        <div class="step-icon">🛠️</div>
+                        <div class="step-title" style="color: var(--white);">Изберете инструмент</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">ChatGPT, Claude, Gemini, Perplexity или Copilot — който е най-подходящ</div>
+                    </div>
+                    <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
+                        <div class="step-number" style="color: rgba(255,255,255,0.6);">03</div>
+                        <div class="step-icon">🚀</div>
+                        <div class="step-title" style="color: var(--white);">Опитайте и споделете</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Изпробвайте, оценете резултата и разкажете на групата какво работи</div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.1); border-left-color: var(--white);">
+                    <div class="prompt-label" style="color: rgba(255,255,255,0.7);">Примерни задачи</div>
+                    <div class="prompt-text" style="color: var(--white);">Обобщете протокол от среща. Напишете отговор на заявление. Анализирайте таблица с данни. Преведете документ. Проверете факт с източници.</div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">07</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 7: Споделяне на резултати ═══════════════ -->
+        <div class="slide bg-blue" data-slide="7">
+            <div class="slide-number mono">08 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Дискусия</div>
+                <h2 class="anim-up anim-up-d1">Какво научихте от експеримента?</h2>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+
+                <div class="facts-grid anim-up anim-up-d3" style="max-width: 1000px;">
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">✅</div>
+                        <div class="fact-title">Какво работи добре?</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Кои задачи ИИ свърши добре? Изненада ли ви нещо?</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">❌</div>
+                        <div class="fact-title">Какво не работи?</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Къде ИИ сбърка или даде неподходящ резултат?</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">💡</div>
+                        <div class="fact-title">Какво бихте променили?</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Как бихте подобрили промпта или избрали друг инструмент?</div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.08); border-left-color: var(--off-white);">
+                    <div class="prompt-label" style="color: rgba(255,255,255,0.6);">Споделете</div>
+                    <div class="prompt-text" style="color: var(--white);">Кратко представяне — коя задача, кой инструмент, какъв резултат.</div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">08</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 8: Обобщение + Следващи стъпки ═══════════════ -->
+        <div class="slide bg-dark" data-slide="8">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">09 / 10</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Обобщение</div>
+                <h2 class="anim-up anim-up-d1">Следващи стъпки</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <ul class="recap-list anim-up anim-up-d3">
+                    <li><span class="check">✓</span> Не е нужно да програмирате — ChatGPT, Claude, Gemini, Perplexity и Copilot работят с естествен език</li>
+                    <li><span class="check">✓</span> Изберете един инструмент и го използвайте редовно — навикът е по-важен от избора</li>
+                    <li><span class="check">✓</span> Започнете с малки задачи — обобщение, чернова, превод — и постепенно разширявайте</li>
+                    <li><span class="check">✓</span> Винаги проверявайте резултата и не въвеждайте лични данни</li>
+                    <li><span class="check">✓</span> Споделяйте опит с колеги — ИИ грамотността е екипно умение</li>
+                </ul>
+
+                <div class="final-message anim-up anim-up-d4">
+                    <p><strong>Днес направихте първата стъпка.</strong> Следващата е да приложите поне една от тези техники в работата си утре. Не е нужно да бъде перфектно — важното е да започнете.</p>
+                </div>
+            </div>
+
+            <div class="big-number">09</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 9: Thank You ═══════════════ -->
+        <div class="slide bg-white" data-slide="9">
+
+            <div class="thankyou-logos-top anim-up">
+                <img src="assets/AI EDIH logo.png" alt="AI EDIH North Central Bulgaria" style="height: 70px; margin-top: -6px;">
+                <img src="assets/edih-logo-simple-color-one line.png" alt="EDIH Network">
+            </div>
+
+            <div class="thankyou-center">
+                <div class="tag anim-up anim-up-d1" style="border-bottom-color: var(--blue); color: var(--blue);">Край на модула</div>
+                <h1 class="anim-up anim-up-d2" style="color: var(--blue-dark); max-width: 800px; text-align: center;">Благодаря за участието!</h1>
+                <div class="divider anim-up anim-up-d3" style="margin: 12px auto;"></div>
+                <p class="subtitle anim-up anim-up-d3" style="color: #555; text-align: center; max-width: 600px;">
+                    Днес направихте първата стъпка към ефективното използване на ИИ в работата си. Продължавайте да експериментирате!
+                </p>
+                <div class="thankyou-meta anim-up anim-up-d4">
+                    <div class="thankyou-meta-item">ОБУЧИТЕЛ <span>// Александър Ангелов</span></div>
+                    <div class="thankyou-meta-item">ДАТА <span>// 11.03.2026</span></div>
+                </div>
+            </div>
+
+            <div class="thankyou-bottom anim-up anim-up-d5">
+                <div class="thankyou-bottom-logo">
+                    <img src="assets/logo_pniidit_bg_horizontal-1536x395-1.webp" alt="Програма НИДИТ">
+                </div>
+                <p class="thankyou-project-text">
+                    Проект BG16RFPR002-1.001-0001 „Създаване на европейски цифров иновационен хъб в Северен централен район на планиране" (ЕДИХ „СЦР"), съфинансиран от Европейския съюз чрез Програма „Научни изследвания, иновации и дигитализация за интелигентна трансформация" 2021–2027
+                </p>
+                <div class="thankyou-bottom-logo">
+                    <img src="assets/BG-Съфинансирано-от-Европейския-съюз_POS-1024x215.png" alt="Съфинансирано от ЕС">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="nav-info mono" id="navInfo">01 / 10</div>
+        <div class="nav-progress" id="navProgress"></div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">&larr;</button>
+            <button class="nav-btn" onclick="nextSlide()" title="Следващ слайд">&rarr;</button>
+        </div>
+    </div>
+
+    <button class="fs-btn" onclick="toggleFS()" title="Fullscreen">&#x26F6;</button>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        let current = 0;
+
+        // Build progress dots
+        const progress = document.getElementById('navProgress');
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goTo(i);
+            progress.appendChild(dot);
+        }
+
+        function goTo(n) {
+            if (n < 0) { parent.postMessage({type:'prev-section-arrow'}, '*'); return; }
+            if (n >= total) { parent.postMessage({type:'next-section-arrow'}, '*'); return; }
+            slides[current].classList.remove('active');
+            progress.children[current].classList.remove('active');
+            current = n;
+            slides[current].classList.add('active');
+            progress.children[current].classList.add('active');
+            document.getElementById('navInfo').textContent =
+                String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+        }
+
+        function nextSlide() { goTo(current + 1); }
+        function prevSlide() { goTo(current - 1); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'f' || e.key === 'F') toggleFS();
+            if (e.key === 'Escape') {
+                if (document.fullscreenElement) { document.exitFullscreen(); }
+            }
+        });
+
+        function toggleFS() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Listen for parent messages
+        window.addEventListener('message', (e) => {
+            if (e.data && e.data.type === 'go-to-last-slide') {
+                goTo(total - 1);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
