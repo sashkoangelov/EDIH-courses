@@ -304,11 +304,18 @@
             menuBtn.classList.remove('open');
             menuPanel.classList.remove('open');
             menuBackdrop.classList.remove('open');
+            // Re-focus iframe so arrow keys work
+            setTimeout(() => focusActiveIframe(), 50);
         }
 
         function getActiveSection() {
             const active = document.querySelector('.section.active');
             return active ? active.id : sectionOrder[0];
+        }
+
+        function focusActiveIframe() {
+            const active = document.querySelector('.section.active iframe');
+            if (active) active.focus();
         }
 
         function showSection(id, goToSlide) {
@@ -321,15 +328,17 @@
                 item.classList.toggle('active', item.dataset.section === id);
             });
 
+            const iframe = target.querySelector('iframe');
+
             // If navigating to last slide of a section (going backwards)
-            if (goToSlide === 'last') {
-                const iframe = target.querySelector('iframe');
-                if (iframe && iframe.contentWindow) {
-                    // Small delay to ensure iframe is visible
-                    setTimeout(() => {
-                        iframe.contentWindow.postMessage({type: 'go-to-last-slide'}, '*');
-                    }, 50);
-                }
+            if (goToSlide === 'last' && iframe && iframe.contentWindow) {
+                setTimeout(() => {
+                    iframe.contentWindow.postMessage({type: 'go-to-last-slide'}, '*');
+                    iframe.focus();
+                }, 100);
+            } else {
+                // Focus the iframe so arrow keys work immediately
+                if (iframe) setTimeout(() => iframe.focus(), 50);
             }
         }
 
@@ -347,7 +356,7 @@
             });
         });
 
-        // Keyboard: M to toggle menu, Escape to close
+        // Keyboard: M to toggle menu, Escape to close, arrows forwarded to iframe
         document.addEventListener('keydown', (e) => {
             if (e.key === 'm' || e.key === 'M') {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -356,7 +365,18 @@
             if (e.key === 'Escape' && menuOpen) {
                 closeMenu();
             }
+            // Forward arrow keys to active iframe if parent has focus
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                const iframe = document.querySelector('.section.active iframe');
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage({type: 'keydown', key: e.key}, '*');
+                    e.preventDefault();
+                }
+            }
         });
+
+        // Focus the initial iframe on load
+        window.addEventListener('load', () => focusActiveIframe());
 
         // Listen for messages from child iframes
         window.addEventListener('message', (e) => {

@@ -1382,6 +1382,10 @@
             if (e.data && e.data.type === 'go-to-last-slide') {
                 goTo(total - 1);
             }
+            if (e.data && e.data.type === 'keydown') {
+                if (e.data.key === 'ArrowRight') nextSlide();
+                if (e.data.key === 'ArrowLeft') prevSlide();
+            }
         });
     </script>
 
