@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDIH Обучения</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #DC4E40;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+        }
+
+        .modules {
+            display: grid;
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .module-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 28px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .module-card:hover {
+            background: rgba(220, 78, 64, 0.06);
+            border-color: rgba(220, 78, 64, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .module-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #DC4E40;
+            flex-shrink: 0;
+            width: 48px;
+        }
+
+        .module-info h2 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .module-info p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .module-arrow {
+            margin-left: auto;
+            font-size: 20px;
+            color: rgba(255,255,255,0.2);
+            transition: color 0.2s;
+        }
+
+        .module-card:hover .module-arrow {
+            color: #DC4E40;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-tag">Развитие на цифровите умения</div>
+        <h1>EDIH Обучения</h1>
+        <p>Изберете модул</p>
+    </div>
+
+    <div class="modules">
+        <a class="module-card" href="Модул I - Основи на Изкуствения Интелект/presentation.html">
+            <div class="module-number">I</div>
+            <div class="module-info">
+                <h2>Основи на Изкуствения Интелект</h2>
+                <p>Въведение, технологии, приложения, етика, практика</p>
+            </div>
+            <div class="module-arrow">&rarr;</div>
+        </a>
+    </div>
+
+</body>
+</html>
