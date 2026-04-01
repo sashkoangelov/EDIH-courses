@@ -110,8 +110,8 @@
         .bg-blue .example-desc { color: rgba(255,255,255,0.65); }
 
         .bullet-list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
-        .bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.4; }
-        .bullet-list li::before { content: ''; width: 8px; height: 8px; background: var(--red); flex-shrink: 0; margin-top: 6px; }
+        .bullet-list li { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.5; padding-left: 18px; position: relative; }
+        .bullet-list li::before { content: ''; width: 8px; height: 8px; background: var(--red); position: absolute; left: 0; top: 7px; }
         .bg-red .bullet-list li::before { background: var(--white); }
         .bg-blue .bullet-list li { color: rgba(255,255,255,0.9); }
         .bg-blue .bullet-list li::before { background: var(--off-white); }
@@ -307,7 +307,7 @@
                             <div class="prompt-text">Носите ИИ в джоба си всеки ден — технологията не е нещо далечно, а нещо, което вече ползвате.</div>
                         </div>
                     </div>
-                    <div class="image-placeholder">[ Изображение:<br>Face ID инфрачервена проекция ]</div>
+                    <img src="https://plurilock.com/wp-content/uploads/2024/02/dreamstime_m_137534981-1024x661.jpg" alt="Face ID инфрачервена проекция" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number">04</div>
@@ -346,7 +346,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="image-placeholder" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.35);">[ Изображение:<br>Преди/след нощен режим ]</div>
+                    <img src="https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2014/12/dPS-Before-after.jpg?resize=583%2C357&ssl=1" alt="Преди/след нощен режим" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number" style="color: rgba(255,255,255,0.06);">05</div>
@@ -369,7 +369,7 @@
                             <li>На български: Google Assistant работи добре; Siri — частично</li>
                         </ul>
                     </div>
-                    <div class="image-placeholder">[ Изображение:<br>Siri / Google Assistant ]</div>
+                    <img src="https://cdn.prod.website-files.com/64b11f325314a4ef84c127cc/64d37e277f2d80c305d2a439_d6eynwH3OA-W5YTjZGKRbbKL5PP5dJRqypEdA-0d01R89XOJxNB3I-uK0H_qKw9g0236WT2SSptwrbk7i7EqFcOpBo1vrcnkwU4-qC6L_UJ8enAk8ssVZEQgkG5fCcWv-jN4QkxzjaDoM_D7HfWyJBM.jpeg" alt="Siri / Google Assistant" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number">06</div>
@@ -395,7 +395,7 @@
                             <div class="prompt-text" style="color: white;">Предсказващият текст в телефона ви е опростена версия на същата технология, която стои зад ChatGPT — предвиждане на следващата дума.</div>
                         </div>
                     </div>
-                    <div class="image-placeholder" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.4);">[ Изображение:<br>Предсказващ текст на клавиатура ]</div>
+                    <img src="https://d12aarmt01l54a.cloudfront.net/cms/images/UserMedia-20241103195514/808-440.png" alt="Предсказващ текст на клавиатура" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number" style="color: rgba(255,255,255,0.08);">07</div>
@@ -504,7 +504,7 @@
                             <div class="prompt-text">FDA (САЩ) е одобрила над 900 ИИ медицински продукта. Европа следва с регулация чрез EU AI Act.</div>
                         </div>
                     </div>
-                    <div class="image-placeholder">[ Изображение:<br>ИИ анализ на медицински снимки ]</div>
+                    <img src="https://www.cancer.gov/sites/g/files/xnrzdm211/files/styles/cgov_article/public/cgov_image/media_image/2022-03/IDH1%20mutant%20glioblastoma.jpg" alt="ИИ анализ на медицински снимки" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number">10</div>
@@ -527,7 +527,7 @@
                             <li><strong>Chatbot банкиране</strong>: КБЦ, Revolut и други банки предлагат ИИ чат за клиентски въпроси</li>
                         </ul>
                     </div>
-                    <div class="image-placeholder">[ Изображение:<br>Засичане на финансови измами ]</div>
+                    <img src="https://sportal365images.com/process/smp-images-production/profit.bg/07102024/590dc9e8-4ab4-4049-8808-281598fbe9a8.jpg?operations=autocrop(1001:538)&format=webp" alt="Засичане на финансови измами" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number">11</div>
@@ -549,7 +549,6 @@
                             <li><strong>Визуално търсене</strong>: Снимате продукт и ИИ намира къде да го купите</li>
                         </ul>
                     </div>
-                    <div class="image-placeholder" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.4);">[ Изображение:<br>Amazon ИИ препоръки ]</div>
                 </div>
             </div>
             <div class="big-number" style="color: rgba(255,255,255,0.08);">12</div>
@@ -571,7 +570,7 @@
                             <li><strong>John Deere</strong>: Трактори с ИИ камери, които различават плевели от посеви и третират само плевелите</li>
                         </ul>
                     </div>
-                    <div class="image-placeholder" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.35);">[ Изображение:<br>Дрон над земеделски поля ]</div>
+                    <img src="https://merkurij-agro.bg/images/2/d118fad0a7ffc6c02ccf85d19c22de68/-25619.jpg" alt="Дрон над земеделски поля" style="width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number" style="color: rgba(255,255,255,0.06);">13</div>
@@ -619,7 +618,7 @@
                             <li><strong>Predictive maintenance</strong>: ИИ предсказва кога автобус или влак ще се нуждае от ремонт, преди да се повреди</li>
                         </ul>
                     </div>
-                    <div class="image-placeholder">[ Изображение:<br>Waymo автономно такси ]</div>
+                    <img src="https://www.kaldata.com/wp-content/uploads/2021/05/Waymo.jpg" alt="Waymo автономно такси" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number">15</div>
@@ -737,7 +736,7 @@
                             <div class="prompt-text">България не е само потребител на ИИ технологии — чрез INSAIT ние активно ги създаваме.</div>
                         </div>
                     </div>
-                    <div class="image-placeholder" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.35);">[ Изображение:<br>INSAIT сграда / екип ]</div>
+                    <img src="https://boulevardbulgaria.bg/system/editor_pictures/69536/fb_%D0%BC%D0%B0%D1%80%D1%82%D0%B8%D0%BD_%D0%B2%D0%B5%D1%87%D0%B5%D0%B2_insait.jpg" alt="INSAIT сграда / екип" style="max-width: 400px; border-radius: 12px; margin-top: 16px;">
                 </div>
             </div>
             <div class="big-number" style="color: rgba(255,255,255,0.06);">18</div>
@@ -959,8 +958,8 @@
         function prevSlide() { goTo(current - 1); }
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
-            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') { e.preventDefault(); prevSlide(); }
             if (e.key === 'f' || e.key === 'F') toggleFS();
             if (e.key === 'Escape') {
                 if (document.fullscreenElement) { document.exitFullscreen(); }

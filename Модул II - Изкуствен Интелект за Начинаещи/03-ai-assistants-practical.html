@@ -266,7 +266,7 @@
                         </div>
                     </div>
                     <div class="compare-col cannot">
-                        <h3 style="color: #1a1a2e;">Платени планове (~$20/мес)</h3>
+                        <h3 style="color: #1a1a2e;">Платени планове (~€20/мес)</h3>
                         <div class="compare-items">
                             <div class="compare-item"><span class="compare-icon" style="color: var(--red);">+</span> ChatGPT Plus: GPT-4o, DALL-E 3, Deep Research</div>
                             <div class="compare-item"><span class="compare-icon" style="color: var(--red);">+</span> Claude Pro: Extended Thinking, повече Projects</div>
@@ -717,8 +717,8 @@
         function prevSlide() { goTo(current - 1); }
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
-            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') { e.preventDefault(); prevSlide(); }
             if (e.key === 'f' || e.key === 'F') toggleFS();
             if (e.key === 'Escape') {
                 if (document.fullscreenElement) { document.exitFullscreen(); }

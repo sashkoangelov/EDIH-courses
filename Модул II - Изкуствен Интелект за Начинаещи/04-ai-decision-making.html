@@ -552,8 +552,8 @@
         function prevSlide() { goTo(current - 1); }
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
-            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') { e.preventDefault(); prevSlide(); }
             if (e.key === 'f' || e.key === 'F') toggleFS();
             if (e.key === 'Escape') {
                 if (document.fullscreenElement) { document.exitFullscreen(); }
