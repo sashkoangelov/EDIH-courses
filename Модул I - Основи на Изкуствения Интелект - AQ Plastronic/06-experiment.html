@@ -340,6 +340,44 @@
             color: rgba(0, 0, 0, 0.55);
         }
 
+        /* ── Round 3: logos, tight layout, video ── */
+        .logo-chip { display: inline-flex; align-items: center; background: #fff; border-radius: 8px; padding: 5px 10px; vertical-align: middle; }
+        .logo-chip img { display: block; width: auto; }
+        .logo-chip.plain { background: transparent; padding: 0; }
+        .head-logo { display: block; width: auto; margin-bottom: 10px; }
+        .platform-icon .logo-chip { margin-bottom: 0; }
+        .col-logo { margin-bottom: 12px; display: flex; }
+        .tight .compare-grid { margin-top: 12px; gap: 20px; max-width: 1100px; }
+        .tight .compare-col h3 { margin-bottom: 8px; }
+        .tight .compare-items { gap: 6px; }
+        .tight .compare-item { padding: 8px 12px; font-size: 14px; line-height: 1.35; }
+        .tight .discussion-prompt { margin-top: 12px; padding: 10px 16px; }
+        .tight .discussion-prompt .prompt-text { font-size: 14px; line-height: 1.4; }
+        .tight .subtitle { font-size: 16px; margin-top: 4px; }
+        .tight h2 { font-size: 36px; }
+        .tight .divider { margin: 10px 0; }
+        .tight .tag { margin-bottom: 8px; }
+        .tight .platform-grid { margin-top: 12px !important; max-width: 1000px !important; gap: 12px !important; }
+        .tight .platform-card { padding: 16px 16px; }
+        .tight .platform-icon { margin-bottom: 8px; font-size: 28px; }
+        .tight .platform-tag { margin-top: 8px; }
+        .tight .platform-desc { font-size: 12.5px; line-height: 1.4; }
+        .bottom-row { display: flex; gap: 20px; align-items: flex-start; max-width: 1100px; margin-top: 12px; }
+        .bottom-row .discussion-prompt { flex: 1; margin-top: 0; max-width: none; }
+        .video-box { width: 288px; flex-shrink: 0; }
+        .video-box .vframe { width: 288px; height: 162px; background: #000; }
+        .video-box iframe { width: 100%; height: 100%; border: 0; display: block; }
+        .video-box .vlink { font-family: 'Space Mono', monospace; font-size: 10px; margin-top: 4px; color: rgba(255,255,255,0.6); word-break: break-all; }
+        .bg-white .video-box .vlink { color: rgba(0,0,0,0.5); }
+        .app-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+        .app-row .logo-chip { padding: 6px 12px; }
+        .app-note { font-size: 13px; margin-top: 8px; color: rgba(255,255,255,0.75); }
+        .tight .facts-grid { margin-top: 12px !important; gap: 12px; max-width: 1100px !important; grid-template-columns: repeat(4, 1fr) !important; }
+        .tight .fact-card { padding: 14px 16px; }
+        .tight .fact-icon { font-size: 28px; margin-bottom: 6px; }
+        .tight .fact-title { font-size: 16px; margin-bottom: 4px; }
+        .tight .fact-text { font-size: 13px; line-height: 1.4; }
+
         /* ── Facts grid ── */
         .facts-grid {
             display: grid;
@@ -912,9 +950,9 @@
         </div>
 
         <!-- ═══════════════ SLIDE 1: Преглед на платформите ═══════════════ -->
-        <div class="slide bg-dark" data-slide="1">
+        <div class="slide bg-dark tight" data-slide="1">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">02 / 14</div>
+            <div class="slide-number mono">02 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Инструменти</div>
@@ -923,37 +961,37 @@
 
                 <div class="platform-grid anim-up anim-up-d3" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; gap: 14px; margin-top: 20px;">
                     <div class="platform-card">
-                        <div class="platform-icon">🤖</div>
+                        <div class="platform-icon"><span class="logo-chip plain"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:28px"></span></div>
                         <div class="platform-name">ChatGPT</div>
                         <div class="platform-desc">Универсален ИИ асистент. Текст, анализ, изображения. Projects за повтарящи се задачи.</div>
                         <div class="platform-tag free">Безплатен план</div>
                     </div>
                     <div class="platform-card">
-                        <div class="platform-icon">🧠</div>
+                        <div class="platform-icon"><span class="logo-chip"><img src="assets/logos/claude.svg" alt="Claude" style="height:28px"></span></div>
                         <div class="platform-name">Claude</div>
                         <div class="platform-desc">Силен в дълги документи и анализ. Projects за персонализиран контекст без код.</div>
                         <div class="platform-tag free">Безплатен план</div>
                     </div>
                     <div class="platform-card">
-                        <div class="platform-icon">💎</div>
+                        <div class="platform-icon"><span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:28px"></span></div>
                         <div class="platform-name">Gemini</div>
                         <div class="platform-desc">Google ИИ. Интеграция с Google Workspace — Docs, Sheets, Gmail.</div>
                         <div class="platform-tag free">Безплатен план</div>
                     </div>
                     <div class="platform-card">
-                        <div class="platform-icon">🔍</div>
+                        <div class="platform-icon"><span class="logo-chip"><img src="assets/logos/perplexity.svg" alt="Perplexity" style="height:28px"></span></div>
                         <div class="platform-name">Perplexity</div>
                         <div class="platform-desc">ИИ търсачка с цитирани източници. Идеален за проучвания и проверка на факти.</div>
                         <div class="platform-tag free">Безплатен план</div>
                     </div>
                     <div class="platform-card">
-                        <div class="platform-icon">📎</div>
+                        <div class="platform-icon"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Microsoft Copilot" style="height:28px"></span></div>
                         <div class="platform-name">Microsoft Copilot</div>
                         <div class="platform-desc">Вграден в Word, Excel, Outlook, Teams. Директно в инструментите, които вече ползвате.</div>
                         <div class="platform-tag">Microsoft 365</div>
                     </div>
                     <div class="platform-card">
-                        <div class="platform-icon">🇧🇬</div>
+                        <div class="platform-icon"><span class="logo-chip plain"><img src="assets/logos/bggpt-dark.svg" alt="BgGPT" style="height:28px"></span></div>
                         <div class="platform-name">BgGPT</div>
                         <div class="platform-desc">Български ИИ асистент от INSAIT. Документи, изображения, глас — на български.</div>
                         <div class="platform-tag free">Безплатен план</div>
@@ -965,8 +1003,8 @@
         </div>
 
         <!-- ═══════════════ SLIDE 2: ChatGPT & Claude ═══════════════ -->
-        <div class="slide bg-white" data-slide="2">
-            <div class="slide-number mono">03 / 14</div>
+        <div class="slide bg-white tight" data-slide="2">
+            <div class="slide-number mono">03 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">ChatGPT & Claude</div>
@@ -975,6 +1013,7 @@
 
                 <div class="compare-grid anim-up anim-up-d3">
                     <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip plain"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:32px"></span></div>
                         <h3 style="color: #1a1a2e;">ChatGPT</h3>
                         <div class="compare-items">
                             <div class="compare-item">
@@ -996,6 +1035,7 @@
                         </div>
                     </div>
                     <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip plain"><img src="assets/logos/claude.svg" alt="Claude" style="height:32px"></span></div>
                         <h3 style="color: #1a1a2e;">Claude</h3>
                         <div class="compare-items">
                             <div class="compare-item">
@@ -1028,9 +1068,9 @@
         </div>
 
         <!-- ═══════════════ SLIDE 3: Gemini & BgGPT ═══════════════ -->
-        <div class="slide bg-dark" data-slide="3">
+        <div class="slide bg-dark tight" data-slide="3">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">04 / 14</div>
+            <div class="slide-number mono">04 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Gemini & BgGPT</div>
@@ -1039,6 +1079,7 @@
 
                 <div class="compare-grid anim-up anim-up-d3">
                     <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:32px"></span></div>
                         <h3>Gemini</h3>
                         <div class="compare-items">
                             <div class="compare-item">
@@ -1060,6 +1101,7 @@
                         </div>
                     </div>
                     <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip plain"><img src="assets/logos/bggpt-dark.svg" alt="BgGPT" style="height:32px"></span></div>
                         <h3>BgGPT (bggpt.ai)</h3>
                         <div class="compare-items">
                             <div class="compare-item">
@@ -1092,12 +1134,13 @@
         </div>
 
         <!-- ═══════════════ SLIDE 4: Microsoft Copilot ═══════════════ -->
-        <div class="slide bg-blue" data-slide="4">
-            <div class="slide-number mono">05 / 14</div>
+        <div class="slide bg-blue tight" data-slide="4">
+            <div class="slide-number mono">05 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Microsoft Copilot</div>
                 <h2 class="anim-up anim-up-d1">ИИ, вграден в инструментите ви</h2>
+                <div class="anim-up anim-up-d1" style="margin-top:8px;"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Microsoft Copilot" style="height:32px"></span></div>
                 <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
 
                 <div class="facts-grid anim-up anim-up-d3" style="max-width: 1000px;">
@@ -1132,9 +1175,257 @@
             <div class="big-number" style="color: rgba(255,255,255,0.06);">05</div>
         </div>
 
+        <!-- ═══════════════ NEW: Deep Research ═══════════════ -->
+        <div class="slide bg-dark tight" data-slide="5">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">06 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Deep Research</div>
+                <h2 class="anim-up anim-up-d1">Deep Research: проучване с източници</h2>
+                <p class="subtitle anim-up anim-up-d2" style="color: rgba(255,255,255,0.7);">ИИ, който чете десетки страници вместо вас и цитира откъде е взел всяко твърдение</p>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="compare-grid anim-up anim-up-d3">
+                    <div class="compare-col can">
+                        <h3>Какво прави</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon"></span>
+                                1. Задавате въпрос
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon"></span>
+                                2. ИИ търси, чете и сравнява източници
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon"></span>
+                                3. Доклад с цитати за няколко минути (Gemini 5–10, Perplexity 2–4)
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon"></span>
+                                4. Вие проверявате източниците
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col can">
+                        <h3>Къде (към 30.10.2026)</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Gemini — безплатно с дневен лимит
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                ChatGPT — безплатно с лимити
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Perplexity — безплатно, ограничен брой на ден
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Claude Research — само платени планове
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Copilot — спряно за потребители
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-row anim-up anim-up-d4">
+                    <div class="discussion-prompt">
+                        <div class="prompt-label">Примерен промпт</div>
+                        <div class="prompt-text">„Направи проучване: какви ИИ решения за визуална инспекция на шприцовани детайли предлагат европейски доставчици през 2025–2026; сравни по цена, време за внедряване и необходими данни; цитирай източници."</div>
+                    </div>
+                    <div class="video-box">
+                        <div class="vframe"><iframe src="https://www.youtube-nocookie.com/embed/buwMJxvW7wI" title="Google: Gemini Deep Research Demo" loading="lazy" allowfullscreen tabindex="-1" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                        <a class="vlink" href="https://www.youtube.com/watch?v=buwMJxvW7wI" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">Видео: youtube.com/watch?v=buwMJxvW7wI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">06</div>
+        </div>
+
+        <!-- ═══════════════ NEW: Artifacts и Canvas ═══════════════ -->
+        <div class="slide bg-white tight" data-slide="6">
+            <div class="slide-number mono">07 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Artifacts и Canvas</div>
+                <h2 class="anim-up anim-up-d1">Artifacts и Canvas: документът до чата</h2>
+                <p class="subtitle anim-up anim-up-d2" style="color: #555;">Резултатът се появява до разговора — редактирате го, не го копирате ръчно</p>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="compare-grid anim-up anim-up-d3">
+                    <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip plain"><img src="assets/logos/claude.svg" alt="Claude" style="height:32px"></span></div>
+                        <h3 style="color: #1a1a2e;">Claude Artifacts</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Документи, презентации, дизайни, малки интерактивни инструменти
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Редактирате и споделяте; безплатно
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                От 16.09.2026 шаблони Docs / Slides / Design
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Експорт в Word, PDF, PowerPoint
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip plain"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:32px"></span></div>
+                        <h3 style="color: #1a1a2e;">Gemini Canvas</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Работно пространство за документ, приложение, презентация или код
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                ChatGPT Canvas: проверете при вход
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-row anim-up anim-up-d4">
+                    <div class="discussion-prompt">
+                        <div class="prompt-label">Примерен промпт</div>
+                        <div class="prompt-text">„Направи едностраничен чеклист за визуална проверка на капак след шприцоване като интерактивен документ с отметки."</div>
+                    </div>
+                    <div class="video-box">
+                        <div class="vframe"><iframe src="https://www.youtube-nocookie.com/embed/iSn77jvjojA" title="Anthropic: Turn ideas into interactive artifacts" loading="lazy" allowfullscreen tabindex="-1" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                        <a class="vlink" href="https://www.youtube.com/watch?v=iSn77jvjojA" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">Видео: youtube.com/watch?v=iSn77jvjojA</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">07</div>
+        </div>
+
+        <!-- ═══════════════ NEW: Мобилни приложения ═══════════════ -->
+        <div class="slide bg-blue tight" data-slide="7">
+            <div class="slide-number mono">08 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Мобилни приложения</div>
+                <h2 class="anim-up anim-up-d1">ИИ на телефона: в цеха, не само в офиса</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="facts-grid anim-up anim-up-d3">
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">📷</div>
+                        <div class="fact-title">Снимка</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">„Какво е това и има ли дефект?" — ChatGPT, Gemini, BgGPT</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">🎤</div>
+                        <div class="fact-title">Глас</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Диктувате бележка или въпрос; BgGPT говори български; Gemini Live с камера и споделяне на екран</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">📄</div>
+                        <div class="fact-title">Документ</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Снимате етикет или спецификация → превод или обяснение</div>
+                    </div>
+                    <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+                        <div class="fact-icon">⚠️</div>
+                        <div class="fact-title">Правило</div>
+                        <div class="fact-text" style="color: rgba(255,255,255,0.7);">Без снимки с клиентски чертежи или лични данни; телефон = фирмена политика</div>
+                    </div>
+                </div>
+
+                <div class="app-row anim-up anim-up-d4">
+                    <span class="logo-chip"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:26px"></span>
+                    <span class="logo-chip"><img src="assets/logos/claude.svg" alt="Claude" style="height:26px"></span>
+                    <span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:26px"></span>
+                    <span class="logo-chip plain"><img src="assets/logos/bggpt-dark.svg" alt="BgGPT" style="height:26px"></span>
+                    <span class="logo-chip"><img src="assets/logos/notebooklm.svg" alt="NotebookLM" style="height:26px"></span>
+                    <span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:26px"></span>
+                    <span style="font-size:14px; color: rgba(255,255,255,0.85); margin-left:6px;">безплатно в App Store / Google Play (Copilot: проверете при вход)</span>
+                </div>
+                <div class="app-note anim-up anim-up-d4">Claude: българският не е сред изброените езици на приложението; асистентът работи и на български.</div>
+            </div>
+
+            <div class="big-number">08</div>
+        </div>
+
+        <!-- ═══════════════ NEW: Какво предстои ═══════════════ -->
+        <div class="slide bg-dark tight" data-slide="8">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">09 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Какво предстои</div>
+                <h2 class="anim-up anim-up-d1">Какво предстои: агенти, които работят сами</h2>
+                <p class="subtitle anim-up anim-up-d2" style="color: rgba(255,255,255,0.7);">Анонсирано на OpenAI DevDay, 29.09.2026 — още не е за нас</p>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="compare-grid anim-up anim-up-d3">
+                    <div class="compare-col can">
+                        <div class="col-logo"><span class="logo-chip"><img src="assets/logos/openai.svg" alt="OpenAI" style="height:32px"></span></div>
+                        <h3>OpenAI „dots" (29.09.2026)</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Винаги включени агенти в ChatGPT със собствен облачен компютър и браузър
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Работят и след края на чата
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Правила „разреши / изисквай одобрение / блокирай" и Activity View
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Само Pro и Business Premium; не се предлагат в ЕИП, вкл. България
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col can">
+                        <div class="col-logo" style="height:42px;"></div>
+                        <h3>Какво означава за нас</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Днес асистент, утре агент
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Правилото от Тема 03 остава — човек одобрява действията с последствия
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">→</span>
+                                Започнете с Projects/Gems като подготовка
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;"><div class="video-box">
+                        <div class="vframe"><iframe src="https://www.youtube-nocookie.com/embed/fHEIw5CcN5U" title="OpenAI: The dots demo, take two" loading="lazy" allowfullscreen tabindex="-1" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                        <a class="vlink" href="https://www.youtube.com/watch?v=fHEIw5CcN5U" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">Видео: youtube.com/watch?v=fHEIw5CcN5U</a>
+                    </div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">09</div>
+        </div>
+
         <!-- ═══════════════ SLIDE 5: Кой инструмент за коя задача ═══════════════ -->
-        <div class="slide bg-white" data-slide="5">
-            <div class="slide-number mono">06 / 14</div>
+        <div class="slide bg-white" data-slide="9">
+            <div class="slide-number mono">10 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Навигатор</div>
@@ -1190,12 +1481,12 @@
                 </div>
             </div>
 
-            <div class="big-number">06</div>
+            <div class="big-number">10</div>
         </div>
 
         <!-- ═══════════════ SLIDE 6: Лаборатория — план ═══════════════ -->
-        <div class="slide bg-red" data-slide="6">
-            <div class="slide-number mono">07 / 14</div>
+        <div class="slide bg-red" data-slide="10">
+            <div class="slide-number mono">11 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Лаборатория</div>
@@ -1241,12 +1532,12 @@
                 </div>
             </div>
 
-            <div class="big-number">07</div>
+            <div class="big-number">11</div>
         </div>
 
         <!-- ═══════════════ SLIDE 7: Станция 1 ═══════════════ -->
-        <div class="slide bg-blue" data-slide="7">
-            <div class="slide-number mono">08 / 14</div>
+        <div class="slide bg-blue" data-slide="11">
+            <div class="slide-number mono">12 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Станция 1</div>
@@ -1286,12 +1577,12 @@
                 </div>
             </div>
 
-            <div class="big-number">08</div>
+            <div class="big-number">12</div>
         </div>
 
         <!-- ═══════════════ SLIDE 8: Станция 2 ═══════════════ -->
-        <div class="slide bg-dark" data-slide="8">
-            <div class="slide-number mono">09 / 14</div>
+        <div class="slide bg-dark" data-slide="12">
+            <div class="slide-number mono">13 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Станция 2</div>
@@ -1343,12 +1634,12 @@
                 </div>
             </div>
 
-            <div class="big-number">09</div>
+            <div class="big-number">13</div>
         </div>
 
         <!-- ═══════════════ SLIDE 9: Станция 3 ═══════════════ -->
-        <div class="slide bg-blue" data-slide="9">
-            <div class="slide-number mono">10 / 14</div>
+        <div class="slide bg-blue" data-slide="13">
+            <div class="slide-number mono">14 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Станция 3</div>
@@ -1388,12 +1679,12 @@
                 </div>
             </div>
 
-            <div class="big-number">10</div>
+            <div class="big-number">14</div>
         </div>
 
         <!-- ═══════════════ SLIDE 10: Бонус станция ═══════════════ -->
-        <div class="slide bg-dark" data-slide="10">
-            <div class="slide-number mono">11 / 14</div>
+        <div class="slide bg-dark" data-slide="14">
+            <div class="slide-number mono">15 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Бонус станция</div>
@@ -1444,12 +1735,12 @@
                 </div>
             </div>
 
-            <div class="big-number">11</div>
+            <div class="big-number">15</div>
         </div>
 
         <!-- ═══════════════ SLIDE 11: Споделяне на резултати ═══════════════ -->
-        <div class="slide bg-blue" data-slide="11">
-            <div class="slide-number mono">12 / 14</div>
+        <div class="slide bg-blue" data-slide="15">
+            <div class="slide-number mono">16 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Дискусия</div>
@@ -1480,13 +1771,13 @@
                 </div>
             </div>
 
-            <div class="big-number" style="color: rgba(255,255,255,0.06);">12</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">16</div>
         </div>
 
         <!-- ═══════════════ SLIDE 12: Обобщение + Следващи стъпки ═══════════════ -->
-        <div class="slide bg-dark" data-slide="12">
+        <div class="slide bg-dark" data-slide="16">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">13 / 14</div>
+            <div class="slide-number mono">17 / 18</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Обобщение</div>
@@ -1494,7 +1785,7 @@
                 <div class="divider anim-up anim-up-d2"></div>
 
                 <ul class="recap-list anim-up anim-up-d3">
-                    <li><span class="check">✓</span> Не е нужно да програмирате — ChatGPT, Claude, Gemini, BgGPT, Copilot — и NotebookLM за въпроси към документи</li>
+                    <li><span class="check">✓</span> Не е нужно да програмирате — ChatGPT, Claude, Gemini, BgGPT, Copilot, NotebookLM; Deep Research за проучвания, Artifacts/Canvas за документи</li>
                     <li><span class="check">✓</span> Изберете един инструмент и го използвайте редовно — навикът е по-важен от избора</li>
                     <li><span class="check">✓</span> Започнете с малки задачи — обобщение, чернова, превод — и постепенно разширявайте</li>
                     <li><span class="check">✓</span> Винаги проверявайте резултата; работете само с обезличени документи</li>
@@ -1506,11 +1797,11 @@
                 </div>
             </div>
 
-            <div class="big-number">13</div>
+            <div class="big-number">17</div>
         </div>
 
         <!-- ═══════════════ SLIDE 13: Thank You ═══════════════ -->
-        <div class="slide bg-white" data-slide="13">
+        <div class="slide bg-white" data-slide="17">
 
             <div class="thankyou-logos-top anim-up">
                 <img src="assets/AI EDIH logo.png" alt="AI EDIH North Central Bulgaria" style="height: 70px; margin-top: -6px;">
@@ -1547,7 +1838,7 @@
 
     <!-- Navigation -->
     <div class="nav-bar">
-        <div class="nav-info mono" id="navInfo">01 / 14</div>
+        <div class="nav-info mono" id="navInfo">01 / 18</div>
         <div class="nav-progress" id="navProgress"></div>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">&larr;</button>
