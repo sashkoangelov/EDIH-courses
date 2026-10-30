@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тема 01 — Въведение и основни технологии в ИИ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+        :root {
+            --red: #DC4E40;
+            --blue: #2C3781;
+            --blue-dark: #1a2456;
+            --blue-light: #3d4a9e;
+            --red-light: #e8736a;
+            --white: #ffffff;
+            --off-white: #f0f0f0;
+            --gray: #94a3b8;
+            --dark: #0c1028;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--white);
+        }
+
+        /* ── Slide Container ── */
+        .deck {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ── Backgrounds ── */
+        .bg-blue {
+            background: var(--blue);
+            background-image:
+                linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-light) 100%);
+        }
+
+        .bg-dark {
+            background: var(--dark);
+            background-image:
+                linear-gradient(180deg, #0c1028 0%, #141a3a 100%);
+        }
+
+        .bg-red {
+            background: var(--red);
+            background-image:
+                linear-gradient(135deg, #b83a2f 0%, var(--red) 50%, var(--red-light) 100%);
+        }
+
+        .bg-white {
+            background: #ffffff;
+            color: #1a1a2e;
+        }
+
+        .bg-white .slide-number {
+            color: rgba(0, 0, 0, 0.25);
+        }
+
+        .bg-white::before {
+            display: none;
+        }
+
+        /* ── Grid overlay ── */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* ── Corner accent ── */
+        .accent-corner {
+            position: absolute;
+            width: 120px;
+            height: 6px;
+            background: var(--red);
+        }
+
+        .accent-corner.top-left {
+            top: 40px;
+            left: 40px;
+        }
+
+        .accent-corner.top-left::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 120px;
+            background: var(--red);
+            top: 0;
+            left: 0;
+        }
+
+        .accent-corner.bottom-right {
+            bottom: 40px;
+            right: 40px;
+            background: var(--red);
+        }
+
+        .accent-corner.bottom-right::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 120px;
+            background: var(--red);
+            bottom: 0;
+            right: 0;
+        }
+
+        /* ── Typography ── */
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 44px;
+            right: 80px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: clamp(18px, 2vw, 24px);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 1.8vw, 22px);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            max-width: 700px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 16px;
+            padding: 6px 0;
+            border-bottom: 2px solid var(--red);
+        }
+
+        .bg-red .tag {
+            color: var(--white);
+            border-bottom-color: var(--white);
+        }
+
+        .bg-white .tag {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+        /* ── Content blocks ── */
+        .content-block {
+            position: relative;
+            z-index: 1;
+        }
+
+        .big-number {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(80px, 12vw, 160px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.06);
+            position: absolute;
+            right: 80px;
+            bottom: 60px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .bg-white .big-number {
+            color: rgba(0, 0, 0, 0.04);
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+            margin: 16px 0;
+        }
+
+        .bg-red .divider {
+            background: var(--white);
+        }
+
+        .bg-white .divider {
+            background: var(--red);
+        }
+
+        /* ── Meta info strip ── */
+        .meta-strip {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .meta-item {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 1px;
+        }
+
+        .meta-item span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ── Facts grid ── */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+        }
+
+        .fact-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .fact-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .fact-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .fact-text {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        /* ── Examples list ── */
+        .examples-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+            max-width: 800px;
+        }
+
+        .example-item {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 16px;
+            align-items: start;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--red);
+        }
+
+        .example-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(220, 78, 64, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .example-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: var(--white);
+        }
+
+        .example-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+        }
+
+        /* ── Poll / Quiz ── */
+        .poll-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 28px;
+            max-width: 600px;
+        }
+
+        .poll-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .poll-option:hover {
+            border-color: var(--red);
+            background: rgba(220, 78, 64, 0.06);
+        }
+
+        .poll-letter {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--red);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--red);
+            flex-shrink: 0;
+        }
+
+        .poll-text {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Quiz reveal states */
+        .quiz-container.revealed .poll-option {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .quiz-container.revealed .poll-option.correct {
+            opacity: 1;
+            border-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .quiz-container.revealed .poll-option.correct .poll-letter {
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+
+        .quiz-container.revealed .poll-option.incorrect {
+            opacity: 0.7;
+            border-color: var(--red);
+            background: rgba(220, 78, 64, 0.08);
+        }
+
+        .quiz-explanation {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(74, 222, 128, 0.08);
+            border-left: 4px solid #4ade80;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            display: none;
+        }
+
+        .quiz-container.revealed .quiz-explanation {
+            display: block;
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        /* ── Timeline (history) ── */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 24px;
+            max-width: 780px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 16px;
+            padding: 10px 16px;
+            align-items: center;
+            border-left: 3px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .timeline-item.era-early {
+            border-left-color: var(--gray);
+            background: rgba(148, 163, 184, 0.08);
+        }
+
+        .timeline-item.era-winter {
+            border-left-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+            opacity: 0.6;
+        }
+
+        .timeline-item.era-boom {
+            border-left-color: var(--red);
+            background: rgba(220, 78, 64, 0.1);
+        }
+
+        .timeline-item.era-now {
+            border-left-color: #4ade80;
+            background: rgba(74, 222, 128, 0.08);
+        }
+
+        .timeline-time {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            white-space: nowrap;
+        }
+
+        .timeline-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .timeline-legend {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ── Split layout ── */
+        .split-layout {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .split-layout .content-side {
+            flex: 1;
+        }
+
+        .split-layout .visual-side {
+            width: 38%;
+            flex-shrink: 0;
+        }
+
+        /* ── Image placeholder ── */
+        .img-placeholder {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: center;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .bg-white .img-placeholder {
+            border-color: rgba(0, 0, 0, 0.15);
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .bg-red .img-placeholder {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ── Compare grid (can / cannot) ── */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .compare-col h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .compare-col.can h3 {
+            color: #4ade80;
+        }
+
+        .compare-col.cannot h3 {
+            color: var(--red-light);
+        }
+
+        .compare-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .compare-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+
+        .compare-col.can .compare-item {
+            border-top: 3px solid #4ade80;
+        }
+
+        .compare-col.cannot .compare-item {
+            border-top: 3px solid var(--red);
+        }
+
+        .compare-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── Discussion prompt ── */
+        .discussion-prompt {
+            margin-top: 28px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 4px solid var(--red);
+            max-width: 700px;
+        }
+
+        .discussion-prompt .prompt-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 6px;
+        }
+
+        .discussion-prompt .prompt-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+        }
+
+        .bg-red .discussion-prompt {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: var(--white);
+        }
+
+        .bg-red .discussion-prompt .prompt-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .bg-red .discussion-prompt .prompt-text {
+            color: var(--white);
+        }
+
+        .bg-white .discussion-prompt {
+            background: rgba(0, 0, 0, 0.04);
+            border-left-color: var(--red);
+        }
+
+        .bg-white .discussion-prompt .prompt-label {
+            color: var(--red);
+        }
+
+        .bg-white .discussion-prompt .prompt-text {
+            color: #1a1a2e;
+        }
+
+        /* ── Prediction demo ── */
+        .prediction-demo {
+            margin-top: 24px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 600px;
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .prediction-demo .predicted {
+            color: var(--red);
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 2px;
+        }
+
+        .prediction-demo .blank {
+            display: inline-block;
+            width: 80px;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── Steps grid (horizontal cards) ── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+            max-width: 900px;
+        }
+
+        .step-card {
+            background: rgba(44, 55, 129, 0.15);
+            border: 1px solid rgba(44, 55, 129, 0.25);
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .bg-white .step-card {
+            background: rgba(44, 55, 129, 0.06);
+            border-color: rgba(44, 55, 129, 0.15);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--blue);
+        }
+
+        .bg-white .step-card::before {
+            background: var(--blue);
+        }
+
+        .step-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue-light);
+            margin-bottom: 8px;
+        }
+
+        .bg-white .step-number {
+            color: var(--blue);
+        }
+
+        .step-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .bg-white .step-title {
+            color: #1a1a2e;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+        }
+
+        .bg-white .step-desc {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── Arrow between steps ── */
+        .step-card + .step-card::after {
+            content: '→';
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .bg-white .step-card + .step-card::after {
+            color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* ── Bullet list ── */
+        .bullet-list {
+            list-style: none;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.4;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .bg-red .bullet-list li::before {
+            background: var(--white);
+        }
+
+        /* ── Next section button ── */
+        .next-section-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+            padding: 16px 28px;
+            background: rgba(220, 78, 64, 0.12);
+            border: 2px solid var(--red);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .next-section-btn:hover {
+            background: rgba(220, 78, 64, 0.25);
+            transform: translateX(4px);
+        }
+
+        .next-section-btn .arrow {
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        .next-section-btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ── Recap list ── */
+        .recap-list {
+            list-style: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .recap-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 0;
+        }
+
+        .recap-list li .check {
+            color: #4ade80;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ── Navigation ── */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(12, 16, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+        }
+
+        .nav-progress {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .nav-dot {
+            width: 32px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            transition: background 0.3s, width 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--red);
+            width: 48px;
+        }
+
+        .nav-dot:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: var(--white);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-info {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ── Fullscreen btn ── */
+        .fs-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(12, 16, 40, 0.6);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 101;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fs-btn:hover {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── Slide entrance animations ── */
+        .slide.active .anim-up {
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .slide.active .anim-up-d1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .slide.active .anim-up-d5 {
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="deck" id="deck">
+
+        <!-- ═══════════════ SLIDE 0: Section Title ═══════════════ -->
+        <div class="slide bg-blue active" data-slide="0">
+            <div class="content-block" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Тема 01</div>
+                <h1 class="anim-up anim-up-d1">Въведение и основни<br>технологии в ИИ</h1>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white); margin: 12px auto;"></div>
+                <p class="subtitle anim-up anim-up-d3" style="color: rgba(255,255,255,0.7); text-align: center;">
+                    Какво е ИИ, как работи и какви са основните му технологии
+                </p>
+                <div class="meta-strip anim-up anim-up-d4" style="justify-content: center;">
+                    <div class="meta-item">МОДУЛ <span>// I</span></div>
+                    <div class="meta-item">ТЕМА <span>// Основи на ИИ</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 1: Какво е ИИ ═══════════════ -->
+        <div class="slide bg-dark" data-slide="1">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">02 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Дефиниция</div>
+                <h2 class="anim-up anim-up-d1">Какво е изкуствен интелект?</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+                <p class="subtitle anim-up anim-up-d2" style="margin-bottom: 24px; font-size: 16px;">
+                    Способността на компютърна система да изпълнява задачи, които обикновено изискват човешки интелект — разпознаване на образи, разбиране на език, вземане на решения.
+                </p>
+
+                <div class="facts-grid anim-up anim-up-d3">
+                    <div class="fact-card">
+                        <div class="fact-icon">⚙️</div>
+                        <div class="fact-title">Обикновен софтуер</div>
+                        <div class="fact-text">Следва точни правила, написани от програмист. „Ако X, направи Y." Нищо повече.</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🧠</div>
+                        <div class="fact-title">Изкуствен интелект</div>
+                        <div class="fact-text">Учи от примери и данни. Открива закономерности, без да бъде изрично програмиран за всеки случай.</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🤖</div>
+                        <div class="fact-title">Научна фантастика</div>
+                        <div class="fact-text">Съзнателни роботи, Skynet, HAL 9000 — не, засега не сме там. И не е ясно дали ще стигнем.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">02</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 2: Аналогия — закономерности ═══════════════ -->
+        <div class="slide bg-red" data-slide="2">
+            <div class="slide-number mono">03 / 18</div>
+
+            <div class="split-layout">
+                <div class="content-side">
+                    <div class="content-block">
+                        <div class="tag anim-up">Ключова идея</div>
+                        <h2 class="anim-up anim-up-d1">ИИ не „мисли" —<br>разпознава закономерности</h2>
+                        <div class="divider anim-up anim-up-d2"></div>
+                        <ul class="bullet-list anim-up anim-up-d3">
+                            <li>Човек вижда няколко кучета и „усеща" кое е куче</li>
+                            <li>ИИ вижда милиони снимки и открива статистически закономерности</li>
+                            <li>Резултатът изглежда „интелигентен", но е математика</li>
+                        </ul>
+
+                        <div class="discussion-prompt anim-up anim-up-d4">
+                            <div class="prompt-label">Въпрос към групата</div>
+                            <div class="prompt-text">Къде в ежедневието ви разпознавате закономерности, без да мислите? (шофиране, готвене, четене на почерк...)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-side anim-up anim-up-d3">
+                    <img src="assets/human-vs-ai-dogs.png" alt="Човек vs. ИИ — разпознаване на закономерности" style="width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">03</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 3: История на ИИ ═══════════════ -->
+        <div class="slide bg-dark" data-slide="3">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">04 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">История</div>
+                <h2 class="anim-up anim-up-d1">Кратка история на ИИ</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="timeline anim-up anim-up-d3">
+                    <div class="timeline-item era-early">
+                        <div class="timeline-time">1950</div>
+                        <div class="timeline-label">Алан Тюринг: „Може ли машина да мисли?"</div>
+                    </div>
+                    <div class="timeline-item era-early">
+                        <div class="timeline-time">1956</div>
+                        <div class="timeline-label">Конференция в Дартмут — ражда се терминът „AI"</div>
+                    </div>
+                    <div class="timeline-item era-early">
+                        <div class="timeline-time">1960–70-те</div>
+                        <div class="timeline-label">Първи експертни системи и правила</div>
+                    </div>
+                    <div class="timeline-item era-winter">
+                        <div class="timeline-time">1980–90-те</div>
+                        <div class="timeline-label">„ИИ зима" — завишени очаквания, недостатъчна мощност</div>
+                    </div>
+                    <div class="timeline-item era-boom">
+                        <div class="timeline-time">2012</div>
+                        <div class="timeline-label">Дълбоко обучение побеждава в ImageNet — ренесанс</div>
+                    </div>
+                    <div class="timeline-item era-boom">
+                        <div class="timeline-time">2017</div>
+                        <div class="timeline-label">Transformer архитектура — основа на GPT, BERT</div>
+                    </div>
+                    <div class="timeline-item era-now">
+                        <div class="timeline-time">2022–2026</div>
+                        <div class="timeline-label">ChatGPT, Gemini, Claude, BgGPT — ИИ за всички</div>
+                    </div>
+                </div>
+
+                <div class="timeline-legend anim-up anim-up-d4">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: var(--gray);"></div> Ранни идеи
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: rgba(255,255,255,0.15);"></div> ИИ зима
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: var(--red);"></div> Бум
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #4ade80;"></div> Днес
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">04</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 4: Защо точно сега ═══════════════ -->
+        <div class="slide bg-blue" data-slide="4">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">05 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Контекст</div>
+                <h2 class="anim-up anim-up-d1">Трите двигателя на ИИ</h2>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+                <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 16px;">
+                    Защо ИИ избухна точно сега, а не преди 20 години?
+                </p>
+
+                <div class="facts-grid anim-up anim-up-d3">
+                    <div class="fact-card" style="opacity: 0.65; border: 1px dashed rgba(255,255,255,0.25);">
+                        <div class="fact-number" style="font-size: 28px;">f(x)</div>
+                        <div class="fact-title">Алгоритми</div>
+                        <div class="fact-text">Повечето ключови идеи съществуват от десетилетия. Алгоритмите <strong>не</strong> са били липсващото звено.</div>
+                    </div>
+                    <div class="fact-card" style="border: 2px solid rgba(74,222,128,0.5);">
+                        <div class="fact-number" style="color: #4ade80;">10x</div>
+                        <div class="fact-title">Данни</div>
+                        <div class="fact-text">Интернет, сензори, дигитализация — генерираме огромни обеми информация, с които да обучаваме</div>
+                    </div>
+                    <div class="fact-card" style="border: 2px solid rgba(74,222,128,0.5);">
+                        <div class="fact-number" style="color: #4ade80;">GPU</div>
+                        <div class="fact-title">Компютърна мощ</div>
+                        <div class="fact-text">Графичните процесори ускоряват обучението хиляди пъти спрямо 90-те години</div>
+                    </div>
+                </div>
+
+                <p class="anim-up anim-up-d4" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.7); text-align: center;">
+                    Алгоритмите бяха готови — липсваха данните и хардуерът, за да заработят на мащаб.
+                </p>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">05</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 5: Алгоритмите изпреварили времето си ═══════════════ -->
+        <div class="slide bg-dark" data-slide="5">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">06 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Поглед назад</div>
+                <h2 class="anim-up anim-up-d1">Алгоритмите бяха<br>изпреварили времето си</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="timeline anim-up anim-up-d3">
+                    <div class="timeline-item era-early">
+                        <div class="timeline-time">1986</div>
+                        <div class="timeline-label">Backpropagation — как невронните мрежи „учат" (Rumelhart, Hinton)</div>
+                    </div>
+                    <div class="timeline-item era-early">
+                        <div class="timeline-time">1997</div>
+                        <div class="timeline-label">LSTM — мрежа с „памет" за последователности (Hochreiter & Schmidhuber)</div>
+                    </div>
+                    <div class="timeline-item era-winter">
+                        <div class="timeline-time">2000-те</div>
+                        <div class="timeline-label">Идеите съществуват, но липсват данни и хардуер за мащабно обучение</div>
+                    </div>
+                    <div class="timeline-item era-boom">
+                        <div class="timeline-time">2017</div>
+                        <div class="timeline-label">Transformer — Google публикува „Attention Is All You Need". Основата на GPT, BERT, Claude.</div>
+                    </div>
+                    <div class="timeline-item era-now">
+                        <div class="timeline-time">2022–26</div>
+                        <div class="timeline-label">Скалиране: трилиони думи + хиляди GPU-та = ChatGPT, Gemini, Claude, BgGPT</div>
+                    </div>
+                </div>
+
+                <div class="discussion-prompt anim-up anim-up-d4">
+                    <div class="prompt-label">Ключов извод</div>
+                    <div class="prompt-text">Transformer архитектурата комбинира идеи от 80-те и 90-те, но заработи едва когато имахме достатъчно данни и изчислителна мощ. Иновацията беше в <strong>мащаба</strong>, не в алгоритъма.</div>
+                </div>
+            </div>
+
+            <div class="big-number">06</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 6: Машинно обучение ═══════════════ -->
+        <div class="slide bg-dark" data-slide="6">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">07 / 18</div>
+
+            <div class="split-layout">
+                <div class="content-side">
+                    <div class="content-block">
+                        <div class="tag anim-up">Технология</div>
+                        <h2 class="anim-up anim-up-d1">Машинно обучение (ML)</h2>
+                        <div class="divider anim-up anim-up-d2"></div>
+                        <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 20px;">
+                            Вместо да пишем правила, даваме примери. Компютърът сам намира закономерностите.
+                        </p>
+
+                        <div class="examples-list anim-up anim-up-d3" style="gap: 12px;">
+                            <div class="example-item">
+                                <div class="example-icon">📏</div>
+                                <div>
+                                    <div class="example-title">Традиционен подход</div>
+                                    <div class="example-desc">Програмист пише: АКО email съдържа „безплатно" И „кликни тук" → спам</div>
+                                </div>
+                            </div>
+                            <div class="example-item" style="border-left-color: #4ade80;">
+                                <div class="example-icon" style="background: rgba(74,222,128,0.12);">🤖</div>
+                                <div>
+                                    <div class="example-title">ML подход</div>
+                                    <div class="example-desc">Покажи на системата 10 000 спам и 10 000 нормални писма. Тя сама научава какво е спам.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-side anim-up anim-up-d4">
+                    <img src="assets/data-model-prediction.png" alt="Данни → Модел → Прогноза" style="width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+
+            <div class="big-number">07</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 7: ML Аналогия — дете и куче ═══════════════ -->
+        <div class="slide bg-white" data-slide="7">
+            <div class="slide-number mono">08 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Аналогия</div>
+                <h2 class="anim-up anim-up-d1" style="color: var(--blue-dark);">Как дете учи да разпознава куче</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="steps-grid anim-up anim-up-d3">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">🐕</div>
+                        <div class="step-title">Вижда много кучета</div>
+                        <div class="step-desc">Различни породи, размери, цветове</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">🔍</div>
+                        <div class="step-title">Забелязва общи черти</div>
+                        <div class="step-desc">Четири крака, опашка, муцуна, козина</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">❓</div>
+                        <div class="step-title">Тества догадките си</div>
+                        <div class="step-desc">„Това куче ли е?" — понякога бърка</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <div class="step-icon">✅</div>
+                        <div class="step-title">Става все по-точно</div>
+                        <div class="step-desc">С повече примери — по-малко грешки</div>
+                    </div>
+                </div>
+
+                <p class="anim-up anim-up-d4" style="margin-top: 24px; font-size: 17px; color: var(--blue-dark); font-weight: 600;">
+                    Машинното обучение прави точно същото — но с данни вместо очи.
+                </p>
+
+                <div class="discussion-prompt anim-up anim-up-d5">
+                    <div class="prompt-label">За настроение</div>
+                    <div class="prompt-text">Кой има куче вкъщи? Вдигнете ръка! 🐶</div>
+                </div>
+            </div>
+
+            <div class="big-number">08</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 8: Невронни мрежи ═══════════════ -->
+        <div class="slide bg-blue" data-slide="8">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">09 / 18</div>
+
+            <div class="split-layout">
+                <div class="content-side">
+                    <div class="content-block">
+                        <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Технология</div>
+                        <h2 class="anim-up anim-up-d1">Невронни мрежи и<br>дълбоко обучение</h2>
+                        <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+                        <ul class="bullet-list anim-up anim-up-d3">
+                            <li>Вдъхновени от мозъка — слоеве от изчислителни единици</li>
+                            <li>Всеки слой разпознава все по-сложни характеристики</li>
+                            <li>Слой 1: ръбове и линии → Слой 2: форми → Слой 3: обекти</li>
+                            <li>„Дълбоко" обучение = много слоеве (десетки или стотици)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="visual-side anim-up anim-up-d4">
+                    <img src="assets/layer-hypothesis.png" alt="Невронна мрежа — слоеве" style="width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">09</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 9: Генеративен ИИ ═══════════════ -->
+        <div class="slide bg-dark" data-slide="9">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">10 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Технология</div>
+                <h2 class="anim-up anim-up-d1">Генеративен ИИ и<br>езикови модели</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+                <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 20px;">
+                    Какво стои зад ChatGPT, Gemini, Claude?
+                </p>
+
+                <div class="examples-list anim-up anim-up-d3" style="gap: 12px;">
+                    <div class="example-item">
+                        <div class="example-icon">🔮</div>
+                        <div>
+                            <div class="example-title">Предвижда следващата дума</div>
+                            <div class="example-desc">Даден текст до момента, моделът избира най-вероятната следваща дума. Повтаря хиляди пъти.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-icon">📚</div>
+                        <div>
+                            <div class="example-title">Обучен на огромни текстове</div>
+                            <div class="example-desc">Книги, уебсайтове, статии — стотици милиарди думи от цял свят</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-icon">⚡</div>
+                        <div>
+                            <div class="example-title">Не „разбира" — статистически предвижда</div>
+                            <div class="example-desc">Няма съзнание, но резултатът е впечатляващо полезен за много задачи</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-demo anim-up anim-up-d4">
+                    „Столицата на България е <span class="predicted">София</span>. Тя е и най-<span class="blank"></span> град в страната."
+                </div>
+
+            </div>
+
+            <div class="big-number">10</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 10: Компютърно зрение ═══════════════ -->
+        <div class="slide bg-red" data-slide="10">
+            <div class="slide-number mono">11 / 18</div>
+
+            <div class="split-layout">
+                <div class="content-side">
+                    <div class="content-block">
+                        <div class="tag anim-up">Технология</div>
+                        <h2 class="anim-up anim-up-d1">Компютърно зрение</h2>
+                        <div class="divider anim-up anim-up-d2"></div>
+                        <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 16px; color: rgba(255,255,255,0.85);">
+                            ИИ, който „вижда" — анализира изображения и видео
+                        </p>
+                        <ul class="bullet-list anim-up anim-up-d3">
+                            <li>Разпознаване на лица (телефон, сигурност)</li>
+                            <li>Четене на документи и ръкописен текст (OCR)</li>
+                            <li>Класификация на пътни знаци (автономни коли)</li>
+                            <li>Инспекция на запоени платки и шприцовани детайли</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="visual-side anim-up anim-up-d4">
+                    <img src="assets/comp-vis.png" alt="Компютърно зрение" style="width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">11</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 11: NLP ═══════════════ -->
+        <div class="slide bg-dark" data-slide="11">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">12 / 18</div>
+
+            <div class="split-layout">
+                <div class="content-side">
+                    <div class="content-block">
+                        <div class="tag anim-up">Технология</div>
+                        <h2 class="anim-up anim-up-d1">Обработка на<br>естествен език (NLP)</h2>
+                        <div class="divider anim-up anim-up-d2"></div>
+                        <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 16px;">
+                            ИИ, който „чете" и „пише"
+                        </p>
+
+                        <div class="examples-list anim-up anim-up-d3" style="gap: 10px;">
+                            <div class="example-item">
+                                <div class="example-icon">💬</div>
+                                <div>
+                                    <div class="example-title">Чатботове</div>
+                                    <div class="example-desc">Чернова на отговор на рекламация или запитване</div>
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-icon">🌐</div>
+                                <div>
+                                    <div class="example-title">Превод</div>
+                                    <div class="example-desc">Google Translate, DeepL — в реално време</div>
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-icon">📝</div>
+                                <div>
+                                    <div class="example-title">Обобщаване</div>
+                                    <div class="example-desc">Резюме на дълъг документ в 3 изречения</div>
+                                </div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-icon">😊</div>
+                                <div>
+                                    <div class="example-title">Анализ на настроения</div>
+                                    <div class="example-desc">Позитивна или негативна обратна връзка — автоматично</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">12</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 12: От чатбот към ИИ агент ═══════════════ -->
+        <div class="slide bg-dark" data-slide="12">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">13 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Технология</div>
+                <h2 class="anim-up anim-up-d1">От чатбот към ИИ агент</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+                <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 12px;">
+                    Какво се промени през 2025–2026
+                </p>
+
+                <div class="examples-list anim-up anim-up-d3" style="gap: 8px;">
+                    <div class="example-item">
+                        <div class="example-icon">💬</div>
+                        <div>
+                            <div class="example-title">Чатбот</div>
+                            <div class="example-desc">Въпрос → отговор. Една стъпка. Следващото действие е ваше.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-icon">🤖</div>
+                        <div>
+                            <div class="example-title">ИИ агент</div>
+                            <div class="example-desc">Получава цел, планира стъпки, използва инструменти (търсене, файлове, таблици, имейл), проверява резултата и продължава.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-icon">🏭</div>
+                        <div>
+                            <div class="example-title">Пример в завода</div>
+                            <div class="example-desc">Нова рекламация в пощата → агентът намира партидата, взима данните за брак от таблицата, подготвя чернова на 8D отговор и създава задача за отговорника. Човек одобрява, преди нещо да се изпрати.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-icon">⚠️</div>
+                        <div>
+                            <div class="example-title">Правило</div>
+                            <div class="example-desc">Агентът действа, затова грешките му се умножават. Винаги точка за човешко одобрение преди действие с последствия: изпращане, плащане, промяна в система.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="big-number">13</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 13: Куиз 1 ═══════════════ -->
+        <div class="slide bg-blue" data-slide="13">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">14 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Интерактивно</div>
+                <h2 class="anim-up anim-up-d1">Бърз тест: Коя технология е?</h2>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+                <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 8px;">
+                    Система, която разпознава ръкописен текст от сканирана доставна бележка. Коя технология стои зад нея?
+                </p>
+
+                <div class="quiz-container anim-up anim-up-d3" id="quiz1">
+                    <div class="poll-options">
+                        <div class="poll-option" style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06);" onclick="revealQuiz('quiz1', this, false)">
+                            <div class="poll-letter" style="border-color: var(--off-white); color: var(--off-white);">A</div>
+                            <div class="poll-text">Машинно обучение</div>
+                        </div>
+                        <div class="poll-option" style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06);" onclick="revealQuiz('quiz1', this, true)">
+                            <div class="poll-letter" style="border-color: var(--off-white); color: var(--off-white);">B</div>
+                            <div class="poll-text">Компютърно зрение + OCR</div>
+                        </div>
+                        <div class="poll-option" style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06);" onclick="revealQuiz('quiz1', this, false)">
+                            <div class="poll-letter" style="border-color: var(--off-white); color: var(--off-white);">C</div>
+                            <div class="poll-text">Генеративен ИИ</div>
+                        </div>
+                        <div class="poll-option" style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06);" onclick="revealQuiz('quiz1', this, false)">
+                            <div class="poll-letter" style="border-color: var(--off-white); color: var(--off-white);">D</div>
+                            <div class="poll-text">NLP</div>
+                        </div>
+                    </div>
+                    <div class="quiz-explanation">
+                        Правилно! Компютърното зрение разпознава символите от изображението, а OCR ги преобразува в текст за по-нататъшна обработка.
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">?</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 14: Куиз 2 ═══════════════ -->
+        <div class="slide bg-dark" data-slide="14">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">15 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Интерактивно</div>
+                <h2 class="anim-up anim-up-d1">Кое НЕ е вярно за ИИ?</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <div class="quiz-container anim-up anim-up-d3" id="quiz2">
+                    <div class="poll-options">
+                        <div class="poll-option" onclick="revealQuiz('quiz2', this, false)">
+                            <div class="poll-letter">A</div>
+                            <div class="poll-text">ИИ учи от примери и данни</div>
+                        </div>
+                        <div class="poll-option" onclick="revealQuiz('quiz2', this, true)">
+                            <div class="poll-letter">B</div>
+                            <div class="poll-text">ИИ може да замести напълно човешкото мислене</div>
+                        </div>
+                        <div class="poll-option" onclick="revealQuiz('quiz2', this, false)">
+                            <div class="poll-letter">C</div>
+                            <div class="poll-text">ИИ предвижда статистически, не „разбира"</div>
+                        </div>
+                        <div class="poll-option" onclick="revealQuiz('quiz2', this, false)">
+                            <div class="poll-letter">D</div>
+                            <div class="poll-text">ИИ изисква големи обеми данни за обучение</div>
+                        </div>
+                    </div>
+                    <div class="quiz-explanation">
+                        Правилно! ИИ е мощен инструмент, но не замества човешкото мислене, преценка и етика. Той допълва, а не замества.
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number">?</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 15: Може / Не може ═══════════════ -->
+        <div class="slide bg-blue" data-slide="15">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">16 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up" style="color: var(--off-white); border-color: var(--off-white);">Реалистични очаквания</div>
+                <h2 class="anim-up anim-up-d1">Какво ИИ може и<br>какво НЕ може</h2>
+                <div class="divider anim-up anim-up-d2" style="background: var(--off-white);"></div>
+
+                <div class="compare-grid">
+                    <div class="compare-col can anim-up anim-up-d3">
+                        <h3>Може ✓</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">✓</span>
+                                Разпознава закономерности в огромни обеми данни
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✓</span>
+                                Генерира текст, код, изображения
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✓</span>
+                                Автоматизира рутинни задачи
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✓</span>
+                                Работи 24/7 без умора
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compare-col cannot anim-up anim-up-d4">
+                        <h3>Не може ✗</h3>
+                        <div class="compare-items">
+                            <div class="compare-item">
+                                <span class="compare-icon">✗</span>
+                                Разбира контекст и нюанси като човек
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✗</span>
+                                Има съзнание, емоции или морал
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✗</span>
+                                Взема етични решения самостоятелно
+                            </div>
+                            <div class="compare-item">
+                                <span class="compare-icon">✗</span>
+                                Замества човешката преценка и отговорност
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">16</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 16: Ключово послание ═══════════════ -->
+        <div class="slide bg-red" data-slide="16">
+            <div class="slide-number mono">17 / 18</div>
+
+            <div class="content-block" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                <div class="tag anim-up">Извод</div>
+                <h1 class="anim-up anim-up-d1" style="max-width: 800px;">ИИ е мощен инструмент.<br>Но крайното решение е<br>винаги на човека.</h1>
+                <div class="divider anim-up anim-up-d2" style="margin: 12px auto;"></div>
+                <p class="subtitle anim-up anim-up-d3" style="text-align: center; color: rgba(255,255,255,0.85);">
+                    Познаването на ИИ ви дава повече контрол — не по-малко.
+                </p>
+
+                <div class="discussion-prompt anim-up anim-up-d4" style="text-align: left;">
+                    <div class="prompt-label">Дискусия</div>
+                    <div class="prompt-text">Коя повтаряща се задача в цеха или офиса ви отнема най-много време?</div>
+                </div>
+            </div>
+
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">17</div>
+        </div>
+
+        <!-- ═══════════════ SLIDE 17: Обобщение + Преход ═══════════════ -->
+        <div class="slide bg-dark" data-slide="17">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">18 / 18</div>
+
+            <div class="content-block">
+                <div class="tag anim-up">Обобщение</div>
+                <h2 class="anim-up anim-up-d1">Какво научихме</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+
+                <ul class="recap-list anim-up anim-up-d3">
+                    <li><span class="check">✓</span> Какво е ИИ — и какво не е (не е фантастика, не е магия)</li>
+                    <li><span class="check">✓</span> Машинно обучение — учене от примери, не от правила</li>
+                    <li><span class="check">✓</span> Невронни мрежи — слоеве от изчисления, вдъхновени от мозъка</li>
+                    <li><span class="check">✓</span> Генеративен ИИ — предсказва следващата дума, не „мисли"</li>
+                    <li><span class="check">✓</span> Компютърно зрение и NLP — ИИ, който „вижда", „чете" и „пише"</li>
+                    <li><span class="check">✓</span> Агенти: ИИ, който действа, не само отговаря</li>
+                    <li><span class="check">✓</span> ИИ е инструмент, не заместник на човека</li>
+                </ul>
+
+                <button class="next-section-btn anim-up anim-up-d4" onclick="parent.postMessage({type:'next-section', sectionId:'sec-02'}, '*')">
+                    Продължи към: Приложения на ИИ <span class="arrow">→</span>
+                </button>
+            </div>
+
+            <div class="big-number">18</div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="nav-info mono" id="navInfo">01 / 18</div>
+        <div class="nav-progress" id="navProgress"></div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">←</button>
+            <button class="nav-btn" onclick="nextSlide()" title="Следващ слайд">→</button>
+        </div>
+    </div>
+
+    <button class="fs-btn" onclick="toggleFS()" title="Fullscreen">⛶</button>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        let current = 0;
+
+        // Build progress dots
+        const progress = document.getElementById('navProgress');
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goTo(i);
+            progress.appendChild(dot);
+        }
+
+        function goTo(n) {
+            if (n < 0) { parent.postMessage({type:'prev-section-arrow'}, '*'); return; }
+            if (n >= total) { parent.postMessage({type:'next-section-arrow'}, '*'); return; }
+            slides[current].classList.remove('active');
+            progress.children[current].classList.remove('active');
+            current = n;
+            slides[current].classList.add('active');
+            progress.children[current].classList.add('active');
+            document.getElementById('navInfo').textContent =
+                String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+        }
+
+        function nextSlide() { goTo(current + 1); }
+        function prevSlide() { goTo(current - 1); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'f' || e.key === 'F') toggleFS();
+            if (e.key === 'Escape') {
+                if (document.fullscreenElement) { document.exitFullscreen(); }
+            }
+        });
+
+        function toggleFS() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Quiz reveal logic
+        function revealQuiz(quizId, clickedOption, isCorrect) {
+            const container = document.getElementById(quizId);
+            if (container.classList.contains('revealed')) return;
+
+            container.classList.add('revealed');
+
+            // Mark the correct option
+            const options = container.querySelectorAll('.poll-option');
+            options.forEach(opt => {
+                // Find the correct one by checking all onclick attributes
+                if (opt === clickedOption && isCorrect) {
+                    opt.classList.add('correct');
+                } else if (opt === clickedOption && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            // Always highlight the correct answer
+            if (!isCorrect) {
+                options.forEach(opt => {
+                    const handler = opt.getAttribute('onclick');
+                    if (handler && handler.includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        // Listen for parent messages
+        window.addEventListener('message', (e) => {
+            if (e.data && e.data.type === 'go-to-last-slide') {
+                goTo(total - 1);
+            }
+            if (e.data && e.data.type === 'keydown') {
+                if (e.data.key === 'ArrowRight') nextSlide();
+                if (e.data.key === 'ArrowLeft') prevSlide();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
