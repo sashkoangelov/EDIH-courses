@@ -368,6 +368,8 @@
             background: var(--red);
         }
 
+        .nav-compact .fact-card { padding: 16px 18px; }
+        .nav-compact .fact-icon { margin-bottom: 8px; }
         .bg-white .fact-card {
             background: rgba(0, 0, 0, 0.03);
             border-color: rgba(0, 0, 0, 0.08);
@@ -1139,7 +1141,7 @@
                 <h2 class="anim-up anim-up-d1">Кой инструмент за коя задача?</h2>
                 <div class="divider anim-up anim-up-d2"></div>
 
-                <div class="facts-grid anim-up anim-up-d3" style="max-width: 1000px; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px;">
+                <div class="facts-grid nav-compact anim-up anim-up-d3" style="max-width: 1000px; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px;">
                     <div class="fact-card">
                         <div class="fact-icon">✉️</div>
                         <div class="fact-title">Писмо / отговор</div>
@@ -1172,8 +1174,8 @@
                     </div>
                     <div class="fact-card">
                         <div class="fact-icon">🔬</div>
-                        <div class="fact-title">Добър / дефектен детайл</div>
-                        <div class="fact-text">Teachable Machine (класификатор от снимки)</div>
+                        <div class="fact-title">Снимка → описание на дефекта</div>
+                        <div class="fact-text">ChatGPT, Gemini или BgGPT (снимка)</div>
                     </div>
                     <div class="fact-card">
                         <div class="fact-icon">📘</div>
@@ -1181,9 +1183,9 @@
                         <div class="fact-text">NotebookLM или Claude Projects</div>
                     </div>
                     <div class="fact-card">
-                        <div class="fact-icon">⚙️</div>
-                        <div class="fact-title">Автоматизация без код</div>
-                        <div class="fact-text">Zapier или Make</div>
+                        <div class="fact-icon">📧</div>
+                        <div class="fact-title">Имейли и протоколи</div>
+                        <div class="fact-text">Copilot, Gemini (Gmail) или ChatGPT</div>
                     </div>
                 </div>
             </div>
@@ -1205,7 +1207,7 @@
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">13:15–13:25</div>
                         <div class="step-icon">🧰</div>
                         <div class="step-title" style="color: var(--white);">Подготовка</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Акаунти, обезличен документ, снимки на детайли</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Акаунти, обезличен документ, снимки на детайли, таблица с брак</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">13:25–13:50</div>
@@ -1217,7 +1219,7 @@
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">13:50–14:15</div>
                         <div class="step-icon">🔬</div>
                         <div class="step-title" style="color: var(--white);">Станция 2</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Класификатор добър / дефектен детайл</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Снимки и таблици: ИИ вижда и смята</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">14:15–14:35</div>
@@ -1293,51 +1295,51 @@
 
             <div class="content-block">
                 <div class="tag anim-up">Станция 2</div>
-                <h2 class="anim-up anim-up-d1">Станция 2 — Класификатор добър / дефектен детайл (25 мин.)</h2>
+                <h2 class="anim-up anim-up-d1">Станция 2 — Снимки и таблици (25 мин.)</h2>
                 <div class="divider anim-up anim-up-d2"></div>
 
                 <div class="steps-grid anim-up anim-up-d3" style="max-width: 1100px; margin-top: 20px;">
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">01</div>
-                        <div class="step-icon">🌐</div>
-                        <div class="step-title" style="color: var(--white);">Отворете Teachable Machine</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">teachablemachine.withgoogle.com → Image Project → Standard</div>
+                        <div class="step-icon">📷</div>
+                        <div class="step-title" style="color: var(--white);">Снимайте детайл</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">3–5 снимки на един детайл: добър и с драскотина / непълно запълване</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">02</div>
-                        <div class="step-icon">✅</div>
-                        <div class="step-title" style="color: var(--white);">Клас „Добър детайл"</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">30+ снимки с уеб камера или телефон, от различни ъгли</div>
+                        <div class="step-icon">🖼️</div>
+                        <div class="step-title" style="color: var(--white);">Качете снимката</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">В ChatGPT, Gemini или BgGPT: „Опиши детайла. Има ли видими дефекти? Къде?"</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">03</div>
-                        <div class="step-icon">⚠️</div>
-                        <div class="step-title" style="color: var(--white);">Клас „Дефектен"</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">30+ снимки на детайли с драскотина или липсващ елемент</div>
+                        <div class="step-icon">🔁</div>
+                        <div class="step-title" style="color: var(--white);">Сравнете</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Качете добър и дефектен заедно: „Каква е разликата?" — сравнете двата инструмента</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">04</div>
-                        <div class="step-icon">🏋️</div>
-                        <div class="step-title" style="color: var(--white);">Train Model</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Обучете модела</div>
+                        <div class="step-icon">📊</div>
+                        <div class="step-title" style="color: var(--white);">Качете таблица</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Обезличен CSV/Excel с брак по машина, смяна, дефект (примерен файл от обучителя)</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">05</div>
-                        <div class="step-icon">👁️</div>
-                        <div class="step-title" style="color: var(--white);">Preview</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Покажете нов детайл на камерата</div>
+                        <div class="step-icon">❓</div>
+                        <div class="step-title" style="color: var(--white);">Три въпроса</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">„Коя машина има най-много брак?", „Има ли тенденция по смени?", „Направи графика"</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">06</div>
                         <div class="step-icon">💡</div>
-                        <div class="step-title" style="color: var(--white);">Тест</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Сменете осветлението или фона — какво става?</div>
+                        <div class="step-title" style="color: var(--white);">Проверете</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Сметнете една стойност ръчно. Съвпада ли? Къде ИИ „видя" нещо, което го няма?</div>
                     </div>
                 </div>
 
                 <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.1); border-left-color: var(--white); max-width: 1000px; ">
                     <div class="prompt-label" style="color: rgba(255,255,255,0.7);">Дискусия</div>
-                    <div class="prompt-text" style="color: var(--white);">Защо моделът греши? Какво е нужно, за да работи на реална линия?</div>
+                    <div class="prompt-text" style="color: var(--white);">Къде ИИ описва точно и къде измисля? Какво трябва на снимка/таблица, за да е полезен отговорът?</div>
                 </div>
             </div>
 
@@ -1395,50 +1397,50 @@
 
             <div class="content-block">
                 <div class="tag anim-up">Бонус станция</div>
-                <h2 class="anim-up anim-up-d1">Бонус станция: автоматизация без код</h2>
+                <h2 class="anim-up anim-up-d1">Бонус: личен асистент за повтаряща се задача</h2>
                 <div class="divider anim-up anim-up-d2"></div>
                 <p class="subtitle anim-up anim-up-d2" style="font-size: 16px; margin-bottom: 8px;">
                     За екипи, приключили Станция 3 по-рано
                 </p>
                 <p class="anim-up anim-up-d2" style="font-size: 15px; color: rgba(255,255,255,0.8); max-width: 1100px; margin-bottom: 4px;">
-                    Нов имейл с „рекламация" в темата → ИИ прави резюме и го класифицира → ред в Google Sheets → известие в чата на екипа.
+                    Една задача, която правите всяка седмица → асистент с готови инструкции, който я върши за минута: Claude Project, Gemini Gem или ChatGPT Project.
                 </p>
 
                 <div class="steps-grid anim-up anim-up-d3" style="max-width: 1100px; grid-template-columns: repeat(4, 1fr); margin-top: 16px;">
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">01</div>
-                        <div class="step-icon">📧</div>
-                        <div class="step-title" style="color: var(--white);">Тригер</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Нов имейл или нов ред в таблица</div>
+                        <div class="step-icon">🎯</div>
+                        <div class="step-title" style="color: var(--white);">Изберете задачата</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Напр. отговор на рекламация, седмичен отчет за брак, превод на спецификация</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">02</div>
-                        <div class="step-icon">🧠</div>
-                        <div class="step-title" style="color: var(--white);">ИИ стъпка</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Резюме / класификация (готов блок в Make; в Zapier безплатно само имейл → таблица)</div>
+                        <div class="step-icon">📝</div>
+                        <div class="step-title" style="color: var(--white);">Напишете инструкциите</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Роля, тон, формат, какво никога да не прави. 5–10 реда</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">03</div>
-                        <div class="step-icon">📊</div>
-                        <div class="step-title" style="color: var(--white);">Действие</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Запис в таблица + известие</div>
+                        <div class="step-icon">📎</div>
+                        <div class="step-title" style="color: var(--white);">Добавете пример</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Обезличен образец на добър резултат (шаблон 8D, стар отчет)</div>
                     </div>
                     <div class="step-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15);">
                         <div class="step-number" style="color: rgba(255,255,255,0.6);">04</div>
                         <div class="step-icon">🧪</div>
-                        <div class="step-title" style="color: var(--white);">Тест</div>
-                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Тест с обезличен тестов имейл; проверете резултата</div>
+                        <div class="step-title" style="color: var(--white);">Тествайте</div>
+                        <div class="step-desc" style="color: rgba(255,255,255,0.65);">Дайте нова задача с едно изречение. Поправете инструкциите, повторете</div>
                     </div>
                 </div>
 
                 <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.1); border-left-color: var(--white); max-width: 1100px; margin-top: 16px;">
-                    <div class="prompt-label" style="color: rgba(255,255,255,0.7);">Безплатни планове (към 30.10.2026)</div>
-                    <div class="prompt-text" style="color: var(--white); font-size: 14px;">Zapier — безплатно 100 задачи/месец, 2 стъпки; Zapier Agents — 400 действия/месец. Make — безплатно 1 000 операции/месец. n8n — безплатно само при самостоятелен хостинг.</div>
+                    <div class="prompt-label" style="color: rgba(255,255,255,0.7);">Къде (безплатно, към 30.10.2026)</div>
+                    <div class="prompt-text" style="color: var(--white); font-size: 14px;">Claude — Projects (до 5), claude.ai. Gemini — Gems, gemini.google.com. ChatGPT — Projects (с лимит на файловете), chatgpt.com. Copilot — агенти само с платен лиценз; проверете при вход.</div>
                 </div>
 
                 <div class="discussion-prompt anim-up anim-up-d4" style="background: rgba(255,255,255,0.1); border-left-color: var(--white); max-width: 1100px; margin-top: 12px;">
                     <div class="prompt-label" style="color: rgba(255,255,255,0.7);">Внимание</div>
-                    <div class="prompt-text" style="color: var(--white);">Не свързвайте работната поща без одобрение от ИТ. Използвайте тестова поща.</div>
+                    <div class="prompt-text" style="color: var(--white);">Инструкциите и примерите са само обезличени. Без клиентски имена, чертежи и цени.</div>
                 </div>
             </div>
 
@@ -1492,7 +1494,7 @@
                 <div class="divider anim-up anim-up-d2"></div>
 
                 <ul class="recap-list anim-up anim-up-d3">
-                    <li><span class="check">✓</span> Не е нужно да програмирате — ChatGPT, Claude, Gemini, BgGPT, Copilot — и Teachable Machine / NotebookLM за специфични задачи</li>
+                    <li><span class="check">✓</span> Не е нужно да програмирате — ChatGPT, Claude, Gemini, BgGPT, Copilot — и NotebookLM за въпроси към документи</li>
                     <li><span class="check">✓</span> Изберете един инструмент и го използвайте редовно — навикът е по-важен от избора</li>
                     <li><span class="check">✓</span> Започнете с малки задачи — обобщение, чернова, превод — и постепенно разширявайте</li>
                     <li><span class="check">✓</span> Винаги проверявайте резултата; работете само с обезличени документи</li>
