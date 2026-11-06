@@ -268,6 +268,39 @@
         .quiz-container.revealed .quiz-feedback { display: block; }
         .quiz-explanation { margin-top: 10px; padding: 14px 20px; background: rgba(0,0,0,0.3); border-left: 4px solid #4ade80; font-size: 15px; color: rgba(255,255,255,0.92); line-height: 1.5; display: none; max-width: 900px; }
         .quiz-container.revealed .quiz-explanation { display: block; animation: fadeUp 0.4s ease forwards; }
+    
+        /* Модели и режими */
+        .mm-table { border-collapse: collapse; width: 100%; max-width: 1100px; margin-top: 12px; }
+        .mm-table th { text-align: left; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 8px 14px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+        .mm-table td { padding: 9px 14px; font-size: 14px; line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.1); vertical-align: top; color: rgba(255,255,255,0.88); }
+        .mm-table td:first-child { font-weight: 600; width: 32%; }
+        .mm-table td:nth-child(2) { width: 24%; }
+        .mm-note { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.8); margin-top: 12px; max-width: 1100px; }
+        .mm-note b { color: #fff; }
+        .mm-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; max-width: 1100px; }
+        .mm-chip { font-size: 13px; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.3); border-radius: 14px; color: rgba(255,255,255,0.88); }
+        .mm-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; max-width: 1150px; }
+        .mm-col { background: rgba(255,255,255,0.05); border-top: 3px solid var(--red); padding: 14px 16px; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.85); }
+        .mm-col h4 { font-size: 17px; margin: 8px 0 6px; color: #fff; }
+        .mm-col ul { list-style: none; }
+        .mm-col li { padding: 2px 0 2px 12px; position: relative; }
+        .mm-col li::before { content: "·"; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+        .mm-two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; max-width: 1150px; }
+        .mm-box { background: rgba(255,255,255,0.05); border-left: 3px solid var(--red); padding: 10px 14px; font-size: 14px; line-height: 1.45; color: rgba(255,255,255,0.85); }
+        .mm-box b { color: #fff; }
+        .mm-tips { margin: 6px 0 0 18px; }
+        .mm-tips li { margin: 2px 0; }
+        .mm-link { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 3px; }
+        /* Ресурси */
+        .res-list { display: flex; flex-direction: column; gap: 10px; margin: 18px 0 14px; max-width: 1100px; }
+        .res-row { display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: start; padding: 10px 16px; background: rgba(255,255,255,0.05); border-left: 3px solid var(--red); }
+        .res-badge { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; padding: 4px 0; margin-top: 2px; border: 1px solid rgba(255,255,255,0.35); color: var(--white); }
+        .res-title { color: var(--white); font-weight: 600; font-size: 17px; line-height: 1.3; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 3px; }
+        a.res-title:hover { text-decoration-color: var(--red); }
+        span.res-title { text-decoration: none; }
+        .res-desc { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.65); margin-top: 2px; }
+        .res-desc .res-note { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--gray); }
+        .res-foot { font-size: 14px; color: rgba(255,255,255,0.7); }
     </style>
 </head>
 
@@ -286,12 +319,12 @@
                     <div class="meta-item">ТЕМА // <span>1 от 4</span></div>
                 </div>
             </div>
-            <div class="slide-number mono">01 / 11</div>
+            <div class="slide-number mono">01 / 17</div>
         </div>
 
         <div class="slide bg-dark" data-slide="1">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">02 / 11</div>
+            <div class="slide-number mono">02 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Повторение</div>
                 <h2 class="anim-up anim-up-d1">Какво вече знаем от Модул I</h2>
@@ -310,7 +343,7 @@
 
         <div class="slide bg-dark" data-slide="2">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">03 / 11</div>
+            <div class="slide-number mono">03 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Как работи</div>
                 <h2 class="anim-up anim-up-d1">Какво „знае" моделът и какво не</h2>
@@ -330,7 +363,7 @@
 
         <div class="slide bg-dark" data-slide="3">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">04 / 11</div>
+            <div class="slide-number mono">04 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Контекст</div>
                 <h2 class="anim-up anim-up-d1" style="font-size: 36px; margin-bottom: 8px;">Памет и контекст: защо чатът „забравя"</h2>
@@ -353,7 +386,7 @@
 
         <div class="slide bg-dark" data-slide="4">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">05 / 11</div>
+            <div class="slide-number mono">05 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Промпт 2.0: четирите части</h2>
@@ -373,7 +406,7 @@
 
         <div class="slide bg-dark" data-slide="5">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">06 / 11</div>
+            <div class="slide-number mono">06 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Покажете, не обяснявайте</h2>
@@ -390,7 +423,7 @@
 
         <div class="slide bg-dark" data-slide="6">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">07 / 11</div>
+            <div class="slide-number mono">07 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Навици</div>
                 <h2 class="anim-up anim-up-d1">Четири трика, които спестяват време</h2>
@@ -402,7 +435,7 @@
 
         <div class="slide bg-dark" data-slide="7">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">08 / 11</div>
+            <div class="slide-number mono">08 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Избор на режим</div>
                 <h2 class="anim-up anim-up-d1">Бърз или мислещ модел</h2>
@@ -410,7 +443,7 @@
                 <table class="t1-table anim-up anim-up-d3">
                     <tr><th>Задача</th><th>Режим</th></tr>
                     <tr class="fast"><td>Чернови, превод, резюме</td><td>Бърз модел</td></tr>
-                    <tr class="think"><td>Анализ, компромиси, сметки</td><td>Режим за по-дълго мислене: Claude „extended thinking", ChatGPT „Thinking", Gemini: режим за по-дълго мислене (в платените планове)</td></tr>
+                    <tr class="think"><td>Анализ, компромиси, сметки</td><td>Режим за по-дълго мислене: Claude: нива на усилие и мислещ режим, ChatGPT „Thinking", Gemini: режим за по-дълго мислене (в платените планове)</td></tr>
                 </table>
                 <p class="callout-line anim-up anim-up-d4">По-бавно, но проверява стъпките.</p>
                 <p class="src anim-up anim-up-d4">Имената и плановете се различават, проверете в приложението.</p>
@@ -418,8 +451,80 @@
             <div class="big-number">08</div>
         </div>
 
-        <div class="slide bg-red" data-slide="8">
-            <div class="slide-number mono">09 / 11</div>
+        <div class="slide bg-dark" data-slide="8">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">09 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Модели и режими</div>
+                <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">ChatGPT: модели и режими</h2>
+                <table class="mm-table anim-up anim-up-d2"><tr><th>Модел</th><th>План</th><th>За какво</th></tr><tr><td>GPT-6 Luna · GPT-5 Thinking Mini</td><td>Free, Go</td><td>Бързи всекидневни въпроси; Thinking Mini за по-замислени отговори</td></tr><tr><td>GPT-6 Sol / Astra · GPT-6.1 Sol · GPT-5.6</td><td>Plus</td><td>Всекидневна работа и по-трудно разсъждение</td></tr><tr><td>GPT-5.6 Sol Pro</td><td>Pro</td><td>Най-дълбоко разсъждение и дълги задачи</td></tr></table>
+                <p class="mm-note anim-up anim-up-d3"><b>Контекст:</b> във Free около 27K токена (около 12 страници вход), в платените планове повече.</p>
+                <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Избор Auto / Instant / Thinking (етикетите проверете при вход)</span><span class="mm-chip">Deep Research</span><span class="mm-chip">Изображения</span><span class="mm-chip">Projects (и на Free)</span><span class="mm-chip">Tasks (платени планове)</span><span class="mm-chip">Агент режим (в ЕИП: проверете)</span></div>
+                <p class="src anim-up anim-up-d4">Източник: chatgpt.com/pricing, 11.2026</p>
+            </div>
+            <div class="big-number">09</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="9">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">10 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Модели и режими</div>
+                <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Claude: модели и режими</h2>
+                <table class="mm-table anim-up anim-up-d2"><tr><th>Модел</th><th>Къде е наличен</th><th>За какво</th></tr><tr><td>Haiku 5.5</td><td>Всички планове</td><td>Най-бърз; кратки задачи и масова обработка</td></tr><tr><td>Sonnet 5.5</td><td>Free и платени</td><td>Баланс между скорост и качество</td></tr><tr><td>Opus 5.5</td><td>От Pro нагоре</td><td>Най-силен за сложна работа; мисленето е винаги включено</td></tr><tr><td>Fable 5.1</td><td>Max, Ultra; в Pro чрез кредити</td><td>Най-напреднал модел</td></tr></table>
+                <p class="mm-note anim-up anim-up-d3"><b>Free:</b> Sonnet и Haiku, Artifacts, създаване на файлове, памет, търсене. <b>Projects:</b> от Pro според claude.com/pricing (проверете при вход).</p>
+                <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Нива на усилие: Low → Max</span><span class="mm-chip">Cowork и планирани задачи: платени планове (проверете при вход)</span><span class="mm-chip">Лимитите се нулират на 5 часа и седмично</span></div>
+                <p class="src anim-up anim-up-d4">Източник: anthropic.com/news, claude.com/pricing, 11.2026</p>
+            </div>
+            <div class="big-number">10</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="10">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">11 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Модели и режими</div>
+                <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Gemini: модели и режими</h2>
+                <table class="mm-table anim-up anim-up-d2"><tr><th>План</th><th>Модел</th><th>За какво</th></tr><tr><td>Free</td><td>Flash-Lite</td><td>Бързи прости въпроси; Gemini Live, Deep Research, Canvas, изображения</td></tr><tr><td>AI Plus (4,99 €)</td><td>Flash + Gemini 4 Argon</td><td>По-високи лимити, генериране на видео</td></tr><tr><td>AI Pro (21,98 €)</td><td>Pro, контекст 1M токена</td><td>По-дълбоко разсъждение и големи документи</td></tr><tr><td>Ultra</td><td>Всички модели + Deep Think (непотвърдено)</td><td>Най-високи лимити и най-силно разсъждение</td></tr></table>
+                <p class="mm-note anim-up anim-up-d3"><b>Лимити:</b> нулират се на всеки 5 часа, със седмичен таван. В ЕИП платените планове са за лица над 18 години.</p>
+                <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Етикетите на избора в приложението: проверете при вход</span></div>
+                <p class="src anim-up anim-up-d4">Източник: gemini.google/subscriptions, 11.2026</p>
+            </div>
+            <div class="big-number">11</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="11">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">12 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Модели и режими</div>
+                <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Copilot, BgGPT и Perplexity</h2>
+                <div class="mm-cols anim-up anim-up-d2"><div class="mm-col"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:22px"></span><h4>Copilot</h4><ul><li>Потребителски: Quick response, Smart (GPT-5), Think Deeper, Study and learn, Search</li><li>Microsoft 365 Copilot Chat: Auto / Quick / Think deeper и „Switch Model" (от 06.10.2026, проверете при вход)</li><li>Кой модел е отдолу: проверете при вход</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/bggpt-bright.svg" alt="BgGPT" style="height:22px"></span><h4>BgGPT</h4><ul><li>Версия 3.0, вероятно на база Gemma 3, създаден за български</li><li>Безплатен (по БНР, проверете при вход); без вход 5 съобщения, после вход с профил</li><li>Документи, изображения и глас: по описание на приложението, непотвърдено</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/perplexity.svg" alt="Perplexity" style="height:22px"></span><h4>Perplexity</h4><ul><li>Free: само режим „Best", без избор на модел</li><li>Pro: 7 модела, вкл. GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash</li><li>Max добавя Opus 5.5 и Gemini 4 Argon</li><li>Free: ограничен брой Pro Search</li></ul></div></div>
+                <p class="src anim-up anim-up-d4">Източници: microsoft.com, bggpt.ai, perplexity.ai, 11.2026</p>
+            </div>
+            <div class="big-number">12</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="12">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">13 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Сравнение на модели</div>
+                <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Как да сравняваме модели: Artificial Analysis</h2>
+                <div class="mm-two anim-up anim-up-d2">
+                    <div class="mm-box"><b>Какво е:</b> независима платформа за измерване на модели и доставчици: език, изображения, видео, реч. Адрес: <a class="mm-link" href="https://artificialanalysis.ai" target="_blank" rel="noopener">artificialanalysis.ai</a><br><b>Какво да четем:</b> Intelligence Index, скорост (токени в секунда), латентност, цена за 1 млн. токена, контекст.</div>
+                    <div class="mm-box"><b>Снимка към 05.11.2026:</b> №1 Gemini 4 Carbon, след него Claude Opus 5.5 и GPT-6 Astra. Класацията се сменя често, проверете датата.</div>
+                </div>
+                <div class="mm-box anim-up anim-up-d3" style="margin-top:12px; max-width:1150px;"><b>Три съвета</b>
+                    <ol class="mm-tips"><li>Гледайте индекса, цената и скоростта заедно.</li><li>Сравнявайте еднакъв режим: мислещ с мислещ.</li><li>За вашата задача тествайте сами с 3 промпта.</li></ol></div>
+                <p class="mm-note anim-up anim-up-d3">Друга гледна точка: arena.ai (LMArena), сляп вот на хора между два отговора.</p>
+                <p class="src anim-up anim-up-d4">Източник: artificialanalysis.ai, 05.11.2026</p>
+            </div>
+            <div class="big-number">13</div>
+        </div>
+
+        <div class="slide bg-red" data-slide="13">
+            <div class="slide-number mono">14 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Интерактивно</div>
                 <h2 class="anim-up anim-up-d1">Кое е най-добре?</h2>
@@ -450,11 +555,11 @@
                     </div>
                 </div>
             </div>
-            <div class="big-number" style="color: rgba(255,255,255,0.08);">09</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">14</div>
         </div>
 
-        <div class="slide bg-blue" data-slide="9">
-            <div class="slide-number mono">10 / 11</div>
+        <div class="slide bg-blue" data-slide="14">
+            <div class="slide-number mono">15 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up" style="color: var(--off-white); border-bottom-color: var(--off-white);">Практика на живо</div>
                 <h2 class="anim-up anim-up-d1" style="font-size: 34px; margin-bottom: 6px;">Сценарий 1: приоритизиране на поръчки при недостиг на капацитет</h2>
@@ -471,12 +576,49 @@
                 <div class="discussion-prompt anim-up anim-up-d4" style="margin-top:14px; padding:12px 18px;"><div class="prompt-label">Дискусия</div><div class="prompt-text">Какво не знае ИИ? Отношения с клиента, договорни условия, извънреден труд, материали.</div></div>
                 <p class="src anim-up anim-up-d5" style="color: rgba(255,255,255,0.7);">Файлове: 01a, 01b, 01c, 01d</p>
             </div>
-            <div class="big-number" style="color: rgba(255,255,255,0.06);">10</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.06);">15</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="10">
+        <div class="slide bg-dark" data-slide="15">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">11 / 11</div>
+            <div class="slide-number mono">16 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">РЕСУРСИ</div>
+                <h2 class="anim-up anim-up-d1" style="margin-bottom:8px;">Ресурси към темата: ще ги намерите в портала</h2>
+                <div class="res-list anim-up anim-up-d2" style="margin:12px 0 10px; gap:8px;">
+                    <div class="res-row">
+                        <span class="res-badge mono">PDF</span>
+                        <div><span class="res-title">Промпт-карта за Copilot, ChatGPT, Claude и Gemini</span><div class="res-desc">Цел · Контекст · Формат · Източник и шест примера от завода. <span class="res-note">· на български · 2 стр. · в портала</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВИДЕО</span>
+                        <div><a class="res-title" href="https://www.youtube.com/watch?v=x4Y2_aZToi0" target="_blank" rel="noopener">Промптовете се промениха! Как говорим с AI през 2026 г.</a><div class="res-desc">Защо контекстът и целта са по-важни от „магическите" формули. <span class="res-note">· на български · 10 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВИДЕО</span>
+                        <div><a class="res-title" href="https://www.youtube.com/watch?v=9b88031naOQ" target="_blank" rel="noopener">ChatGPT промпт инженеринг: от начинаещ до експерт</a><div class="res-desc">Роля, контекст и формат; принципите важат и за Copilot. <span class="res-note">· на български · 10 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВРЪЗКА</span>
+                        <div><a class="res-title" href="https://support.google.com/gemini/answer/15236321?hl=bg" target="_blank" rel="noopener">Първи стъпки с инструкциите Gem в приложенията Gemini</a><div class="res-desc">Постоянни инструкции и контекст в готов асистент. <span class="res-note">· на български · официална помощ · 5 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">СТАТИЯ</span>
+                        <div><a class="res-title" href="https://learn.microsoft.com/en-us/copilot/manage/copilot-prompt-gallery" target="_blank" rel="noopener">Библиотека с промпти за Copilot (Microsoft)</a><div class="res-desc">Официална библиотека с готови заявки за Copilot. <span class="res-note">· на английски · 5 мин · иска вход с Microsoft</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВРЪЗКА</span>
+                        <div><a class="res-title" href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis: сравнение на модели</a><div class="res-desc">Независими класации по качество, скорост и цена. <span class="res-note">· на английски · уебсайт</span></div></div>
+                    </div>
+                </div>
+                <p class="res-foot anim-up anim-up-d3">Пълният списък с материали е в портала за дигитални умения, към всяка тема.</p>
+            </div>
+            <div class="big-number">16</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="16">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">17 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Обобщение</div>
                 <h2 class="anim-up anim-up-d1">Какво запомняме</h2>
@@ -486,14 +628,14 @@
                     Продължи към Тема 2 <span class="arrow">→</span>
                 </button>
             </div>
-            <div class="big-number">11</div>
+            <div class="big-number">17</div>
         </div>
 
     </div>
 
     <!-- Navigation -->
     <div class="nav-bar">
-        <div class="nav-info mono" id="navInfo">01 / 11</div>
+        <div class="nav-info mono" id="navInfo">01 / 17</div>
         <div class="nav-progress" id="navProgress"></div>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">←</button>

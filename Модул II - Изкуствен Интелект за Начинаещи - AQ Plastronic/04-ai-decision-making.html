@@ -233,6 +233,17 @@
         .res-chip.no { background: rgba(220,78,64,0.1); border-color: rgba(220,78,64,0.35); } .res-chip.no b { color: #ff8f84; }
         .res-chip.next { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); } .res-chip.next b { color: rgba(255,255,255,0.7); }
         .two-col { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
+    
+        /* Ресурси */
+        .res-list { display: flex; flex-direction: column; gap: 10px; margin: 18px 0 14px; max-width: 1100px; }
+        .res-row { display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: start; padding: 10px 16px; background: rgba(255,255,255,0.05); border-left: 3px solid var(--red); }
+        .res-badge { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; padding: 4px 0; margin-top: 2px; border: 1px solid rgba(255,255,255,0.35); color: var(--white); }
+        .res-title { color: var(--white); font-weight: 600; font-size: 17px; line-height: 1.3; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 3px; }
+        a.res-title:hover { text-decoration-color: var(--red); }
+        span.res-title { text-decoration: none; }
+        .res-desc { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.65); margin-top: 2px; }
+        .res-desc .res-note { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--gray); }
+        .res-foot { font-size: 14px; color: rgba(255,255,255,0.7); }
     </style>
 </head>
 
@@ -259,7 +270,7 @@
         <!-- ═══════════════ SLIDE 1 ═══════════════ -->
         <div class="slide bg-dark" data-slide="1">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">02 / 11</div>
+            <div class="slide-number mono">02 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Предупреждение</div>
@@ -281,7 +292,7 @@
         <!-- ═══════════════ SLIDE 2 ═══════════════ -->
         <div class="slide bg-white" data-slide="2">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">03 / 11</div>
+            <div class="slide-number mono">03 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Рамка</div>
@@ -297,7 +308,7 @@
         <!-- ═══════════════ SLIDE 3 ═══════════════ -->
         <div class="slide bg-dark" data-slide="3">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">04 / 11</div>
+            <div class="slide-number mono">04 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Практика</div>
@@ -327,7 +338,7 @@
         <!-- ═══════════════ SLIDE 4 ═══════════════ -->
         <div class="slide bg-white" data-slide="4">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">05 / 11</div>
+            <div class="slide-number mono">05 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Критичен поглед</div>
@@ -346,7 +357,7 @@
         <!-- ═══════════════ SLIDE 5 ═══════════════ -->
         <div class="slide bg-blue" data-slide="5">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">06 / 11</div>
+            <div class="slide-number mono">06 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up" style="color: var(--off-white); border-bottom-color: var(--off-white);">Доказателства</div>
@@ -355,7 +366,7 @@
                 <div class="facts-grid anim-up anim-up-d3" style="grid-template-columns: repeat(2, 1fr); max-width: 1000px;">
                     <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
                         <div class="fact-title">Deep Research</div>
-                        <div class="fact-text">За пазар, доставчик или стандарт. Gemini е препоръчан: безплатно с дневен лимит, 5–10 минути (Модул I, Тема 6). <b>Четете източниците, не само доклада.</b></div>
+                        <div class="fact-text">За пазар, доставчик или стандарт. Gemini е препоръчан: безплатно с лимит (нулира се на 5 часа, седмичен таван), 5–10 минути (Модул I, Тема 6). <b>Четете източниците, не само доклада.</b></div>
                     </div>
                     <div class="fact-card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
                         <div class="fact-title">Режим за дълго мислене</div>
@@ -374,7 +385,7 @@
         <!-- ═══════════════ SLIDE 6 ═══════════════ -->
         <div class="slide bg-dark" data-slide="6">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">07 / 11</div>
+            <div class="slide-number mono">07 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Уроци</div>
@@ -406,7 +417,7 @@
         <!-- ═══════════════ SLIDE 7 ═══════════════ -->
         <div class="slide bg-white" data-slide="7">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">08 / 11</div>
+            <div class="slide-number mono">08 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Следа</div>
@@ -421,7 +432,7 @@
 
         <!-- ═══════════════ SLIDE 8 ═══════════════ -->
         <div class="slide bg-red" data-slide="8">
-            <div class="slide-number mono">09 / 11</div>
+            <div class="slide-number mono">09 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Интерактивно</div>
@@ -446,7 +457,7 @@
         <!-- ═══════════════ SLIDE 9 ═══════════════ -->
         <div class="slide bg-dark" data-slide="9">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">10 / 11</div>
+            <div class="slide-number mono">10 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up">Практика на живо</div>
@@ -466,9 +477,43 @@
             <div class="big-number">10</div>
         </div>
 
+        <!-- SLIDE 10: Ресурси към темата -->
+        <div class="slide bg-dark" data-slide="10">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">11 / 12</div>
+            <div class="content-block">
+                <div class="tag anim-up">РЕСУРСИ</div>
+                <h2 class="anim-up anim-up-d1">Ресурси към темата: ще ги намерите в портала</h2>
+                <div class="res-list anim-up anim-up-d2">
+                    <div class="res-row">
+                        <span class="res-badge mono">PDF</span>
+                        <div><span class="res-title">Шаблон за решение с ИИ</span><div class="res-desc">Матрица с тежести, адвокат на дявола, пре-мортем, запис на решението. <span class="res-note">· на български · 2 стр. · в портала</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВРЪЗКА</span>
+                        <div><a class="res-title" href="https://gemini.google/bg/overview/deep-research/" target="_blank" rel="noopener">Gemini Deep Research: личният ви асистент за проучвания</a><div class="res-desc">Какво е Deep Research и кога го ползваме за доставчици и пазар. <span class="res-note">· на български · около 3 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВРЪЗКА</span>
+                        <div><a class="res-title" href="https://support.google.com/gemini/answer/15719111?hl=bg" target="_blank" rel="noopener">Използване на Deep Research в приложенията Gemini</a><div class="res-desc">Стъпки и ограничения; нужен е Google акаунт. <span class="res-note">· на български · официална помощ · 5 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">ВИДЕО</span>
+                        <div><a class="res-title" href="https://www.youtube.com/watch?v=QA7tQzmxGAQ" target="_blank" rel="noopener">Pre-Mortem Analysis (and how AI can help)</a><div class="res-desc">Кратко въведение в пре-мортем анализа. <span class="res-note">· на английски · 2 мин</span></div></div>
+                    </div>
+                    <div class="res-row">
+                        <span class="res-badge mono">СТАТИЯ</span>
+                        <div><a class="res-title" href="https://news.microsoft.com/source/asia/features/toyota-is-deploying-ai-agents-to-harness-the-collective-wisdom-of-engineers-and-innovate-faster/" target="_blank" rel="noopener">Toyota внедрява ИИ агенти, които събират знанието на инженерите</a><div class="res-desc">Пример: агенти помагат на около 800 инженери, а хората проверяват. <span class="res-note">· на английски · Microsoft Source Asia</span></div></div>
+                    </div>
+                </div>
+                <p class="res-foot anim-up anim-up-d3">Пълният списък с материали е в портала за дигитални умения, към всяка тема.</p>
+            </div>
+            <div class="big-number" style="">11</div>
+        </div>
+
         <!-- ═══════════════ SLIDE 10 ═══════════════ -->
-        <div class="slide bg-blue" data-slide="10">
-            <div class="slide-number mono">11 / 11</div>
+        <div class="slide bg-blue" data-slide="11">
+            <div class="slide-number mono">12 / 12</div>
 
             <div class="content-block">
                 <div class="tag anim-up" style="color: var(--off-white); border-bottom-color: var(--off-white);">Обобщение</div>
@@ -485,13 +530,13 @@
                 </button>
             </div>
 
-            <div class="big-number" style="color: rgba(255,255,255,0.08);">11</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">12</div>
         </div>
 
     </div>
 
     <div class="nav-bar">
-        <div class="nav-info mono" id="navInfo">01 / 11</div>
+        <div class="nav-info mono" id="navInfo">01 / 12</div>
         <div class="nav-progress" id="navProgress"></div>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="prevSlide()">&larr;</button>
