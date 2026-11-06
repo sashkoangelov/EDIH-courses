@@ -612,18 +612,19 @@
         function revealQuiz(quizId, clickedOption, isCorrect) {
             const container = document.getElementById(quizId);
             if (container.classList.contains('revealed')) return;
-            container.classList.add('revealed');
-            const options = container.querySelectorAll('.poll-option');
-            options.forEach(opt => {
-                if (opt === clickedOption && isCorrect) { opt.classList.add('correct'); }
-                else if (opt === clickedOption && !isCorrect) { opt.classList.add('incorrect'); }
-            });
+            const fb = document.getElementById(quizId + '-fb');
             if (!isCorrect) {
-                options.forEach(opt => {
-                    const handler = opt.getAttribute('onclick');
-                    if (handler && handler.includes('true')) { opt.classList.add('correct'); }
-                });
+                clickedOption.classList.add('incorrect');
+                clickedOption.style.pointerEvents = 'none';
+                clickedOption.style.opacity = '0.45';
+                fb.style.display = 'block';
+                fb.textContent = 'Опитайте пак';
+                return;
             }
+            container.classList.add('revealed');
+            clickedOption.classList.add('correct');
+            fb.style.display = 'block';
+            fb.textContent = 'Правилно!';
         }
 
         function toggleFS() {
