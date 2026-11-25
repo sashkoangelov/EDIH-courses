@@ -303,6 +303,149 @@
         .res-desc { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.65); margin-top: 2px; }
         .res-desc .res-note { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--gray); }
         .res-foot { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+        /* ── Нови слайдове и анимирани илюстрации (Тема 1) ── */
+        .h2s { font-size: clamp(26px, 2.8vw, 38px); margin-bottom: 6px; }
+        .divider.tight { margin: 8px 0 10px; }
+        .an-btn { position: absolute; top: 38px; right: 190px; z-index: 3; font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.6); background: transparent; border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; cursor: pointer; }
+        .an-btn:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+        .an-note { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.5px; color: rgba(255,255,255,0.55); }
+        .an-lab { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+        /* А: обучение */
+        .tr-pillrow { height: 28px; margin-top: 4px; }
+        .tr-pill { display: inline-block; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); border: 1px solid rgba(255,255,255,0.22); padding: 4px 10px; }
+        .tr-pipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; margin-top: 6px; max-width: 1120px; }
+        .tr-box { position: relative; height: 172px; padding: 14px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); transition: background 0.5s, border-color 0.5s, box-shadow 0.5s; }
+        .tr-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--blue-light); transition: background 0.5s; }
+        .tr-box + .tr-box::after { content: '\2192'; position: absolute; left: -29px; top: 50%; transform: translateY(-50%); font-size: 24px; color: rgba(255,255,255,0.4); }
+        .tr-box.lit { background: rgba(220,78,64,0.16); border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+        .tr-box.lit::before { background: var(--red); }
+        .tr-h { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .tr-body { font-size: 18px; line-height: 1.4; color: rgba(255,255,255,0.9); }
+        .tr-slot { display: inline-block; width: 28px; height: 22px; border: 2px dashed var(--red-light); vertical-align: -4px; margin-left: 2px; }
+        .tr-guess { font-size: 26px; font-weight: 700; color: #fff; opacity: 0.35; transition: opacity 0.5s; margin-top: 6px; }
+        .tr-guess.on { opacity: 1; }
+        .tr-sub { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+        .tr-row3 { font-size: 18px; margin-bottom: 8px; }
+        .tr-row3 b { font-weight: 700; color: #fff; }
+        .tr-real { opacity: 0; transition: opacity 0.5s; }
+        .tr-real.on { opacity: 1; }
+        .tr-mark { display: inline-block; font-size: 26px; font-weight: 700; line-height: 1; vertical-align: -3px; margin-left: 4px; opacity: 0; transition: opacity 0.5s; }
+        .tr-mark.on { opacity: 1; }
+        .tr-mark.ok { color: #4ade80; }
+        .tr-mark.bad { color: var(--red-light); }
+        .sl { position: relative; height: 4px; background: rgba(255,255,255,0.22); margin: 8px 6px 14px 6px; }
+        .sk { position: absolute; top: -6px; left: calc(var(--p) * 1%); width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: var(--red-light); transition: left 1.1s ease; }
+        .tr-cap4 { font-size: 14px; color: rgba(255,255,255,0.7); min-height: 20px; margin-top: 2px; }
+        .tr-caption { margin-top: 18px; height: 30px; font-size: 20px; font-weight: 600; color: #fff; opacity: 0; transition: opacity 0.9s; }
+        .tr-caption.on { opacity: 1; }
+        .tr-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 12px; max-width: 1120px; }
+        .tr-st { font-size: 14px; line-height: 1.45; color: rgba(255,255,255,0.78); border-left: 3px solid var(--blue-light); padding: 4px 12px; }
+        .tr-st b { color: #fff; }
+
+        /* Б: токени */
+        .tk-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 40px; margin-top: 14px; max-width: 1120px; }
+        .tp-sent { font-size: 30px; font-weight: 500; line-height: 1.3; color: #fff; transition: opacity 0.6s; }
+        .tp-sent.dim { opacity: 0.45; }
+        .tk-row { display: flex; flex-wrap: wrap; gap: 18px 12px; margin-top: 22px; min-height: 176px; align-content: flex-start; }
+        .tk-w { display: flex; gap: 4px; }
+        .tk { display: flex; flex-direction: column; align-items: center; gap: 6px; transition: opacity 0.5s, transform 0.5s; }
+        .tk-t { font-size: 22px; font-weight: 600; line-height: 1.2; padding: 8px 9px; min-width: 34px; text-align: center; color: #fff; background: var(--c); border-bottom: 3px solid var(--b); }
+        .tk-n { font-family: 'Space Mono', monospace; font-size: 14px; color: rgba(255,255,255,0.75); transition: opacity 0.8s; }
+        .armed .tk:not(.on) { opacity: 0; transform: scale(0.85); }
+        .armed:not(.nums) .tk-n { opacity: 0; }
+        .tk-pts { display: flex; flex-direction: column; gap: 18px; padding-top: 6px; }
+        .pt { font-size: 18px; line-height: 1.4; color: rgba(255,255,255,0.92); padding-left: 16px; border-left: 4px solid var(--red); transition: opacity 0.6s, transform 0.6s; }
+        .armed .pt:not(.on) { opacity: 0; transform: translateX(14px); }
+        .tk-legend { font-size: 14px; color: rgba(255,255,255,0.65); margin-top: 6px; }
+
+        /* В: дума по дума */
+        .gn-main { display: grid; grid-template-columns: 1.05fr 1fr; gap: 28px; margin-top: 8px; max-width: 1120px; }
+        .ch-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; }
+        .ch-user { align-self: flex-end; background: var(--blue); padding: 10px 16px; font-size: 22px; border-radius: 14px 14px 2px 14px; }
+        .ch-ans { background: rgba(255,255,255,0.08); padding: 12px 16px; font-size: 24px; line-height: 1.45; min-height: 116px; border-radius: 14px 14px 14px 2px; }
+        .at { display: inline-block; border-radius: 4px; transition: background 0.5s; }
+        .at.sp { margin-left: 0.28em; }
+        .at.new { background: rgba(220,78,64,0.35); }
+        .at.in { animation: tokIn 0.5s ease both; }
+        @keyframes tokIn { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }
+        .gn-right { display: flex; flex-direction: column; }
+        .pn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); padding: 12px 18px 10px; }
+        .pn-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .pn-hd b { font-size: 16px; }
+        .pr-row { display: grid; grid-template-columns: 142px 1fr 54px 92px; gap: 10px; align-items: center; height: 40px; }
+        .pr-l { font-size: 19px; font-weight: 600; color: rgba(255,255,255,0.92); white-space: nowrap; }
+        .pr-l small { font-size: 12px; font-weight: 400; color: var(--gray); margin-left: 6px; }
+        .pr-bar { height: 18px; background: rgba(255,255,255,0.08); }
+        .pr-bar i { display: block; height: 100%; width: 0; background: var(--blue-light); transition: width 0.8s ease; }
+        .pr-p { font-family: 'Space Mono', monospace; font-size: 15px; text-align: right; color: rgba(255,255,255,0.9); }
+        .pr-t { font-size: 12px; font-weight: 700; color: #fbbf24; white-space: nowrap; }
+        .pr-row.top .pr-bar i { background: #fbbf24; }
+        .pr-row.pick .pr-bar i { background: var(--red); }
+        .pr-row.pick .pr-t { color: var(--red-light); }
+        .gn-cap { font-size: 15px; line-height: 1.4; margin-top: 10px; padding-left: 12px; border-left: 3px solid #fbbf24; color: rgba(255,255,255,0.9); }
+        .gn-right .an-note { margin-top: 6px; }
+
+        /* Г: контекстен прозорец */
+        .cw-head { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px; max-width: 1100px; }
+        .cw-title { font-size: 18px; font-weight: 700; color: #fff; }
+        .cw-meter { display: flex; align-items: center; gap: 12px; font-family: 'Space Mono', monospace; font-size: 15px; color: rgba(255,255,255,0.9); }
+        .cw-bar { width: 220px; height: 12px; background: rgba(255,255,255,0.12); }
+        .cw-fill { display: block; height: 100%; width: 100%; background: var(--red); transition: width 0.6s ease; }
+        .cw-frame { position: relative; width: 1100px; max-width: 100%; margin-top: 10px; padding: 14px; border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); clip-path: inset(-140px 0 -140px 0); }
+        .cw-track { position: relative; height: 76px; }
+        .cw-chip { position: absolute; top: 0; left: 0; width: 168px; height: 76px; padding: 10px 12px; transform: translate(var(--x, 0px), var(--y, 0px)); transition: transform 0.7s ease, opacity 0.9s ease; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+        .cw-chip .k { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); }
+        .cw-chip .m { font-size: 19px; font-weight: 600; color: #fff; }
+        .cw-chip.me { background: rgba(61,74,158,0.7); border: 1px solid #7d8cf0; }
+        .cw-chip.ai { background: rgba(220,78,64,0.32); border: 1px solid var(--red-light); }
+        .cw-chip.doc { width: 344px; background: rgba(251,191,36,0.2); border: 1px solid #fbbf24; }
+        .cw-chip.drop { --y: 70px; opacity: 0; }
+        .cw-old { height: 26px; margin-top: 8px; font-size: 17px; font-weight: 700; color: #fbbf24; opacity: 0; transition: opacity 0.6s; }
+        .cw-old.on { opacity: 1; }
+        .cw-bot { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; margin-top: 8px; max-width: 1100px; align-items: stretch; }
+        .cw-cap { font-size: 22px; font-weight: 700; line-height: 1.35; color: #fff; padding: 14px 18px; border-left: 4px solid #fbbf24; background: rgba(255,255,255,0.04); opacity: 0; transition: opacity 0.9s; display: flex; align-items: center; }
+        .cw-cap.on { opacity: 1; }
+        .cw-tip { padding: 14px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-left: 4px solid #4ade80; font-size: 18px; line-height: 1.4; color: #fff; }
+        .cw-tip .an-lab { display: block; margin-bottom: 4px; }
+        .cw-foot { margin-top: 8px; }
+
+        /* Д: чат, документи, агент */
+        .rk-row { display: grid; grid-template-columns: 1fr 34px 1fr 34px 1fr; align-items: stretch; margin-top: 12px; max-width: 1120px; }
+        .rk-arrow { display: flex; align-items: center; justify-content: center; font-size: 26px; color: rgba(255,255,255,0.45); }
+        .rk-card { display: flex; gap: 14px; padding: 18px 18px 16px; }
+        .rk-txt { flex: 1; }
+        .rk-txt h3 { font-size: 21px; margin-bottom: 4px; }
+        .rk-sub { font-size: 16px !important; font-weight: 700; color: #fff !important; margin-bottom: 8px; }
+        .rk-txt p { font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.8); }
+        .rk-meter { width: 84px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; flex-shrink: 0; }
+        .rk-bar { width: 24px; height: 138px; background: rgba(255,255,255,0.1); display: flex; align-items: flex-end; }
+        .rk-bar i { display: block; width: 100%; }
+        .rk-lab { font-size: 13px; font-weight: 700; text-align: center; line-height: 1.25; }
+        .rk-meter.lo i { height: 33%; background: #4ade80; } .rk-meter.lo .rk-lab { color: #4ade80; }
+        .rk-meter.mid i { height: 66%; background: #fbbf24; } .rk-meter.mid .rk-lab { color: #fbbf24; }
+        .rk-meter.hi i { height: 100%; background: var(--red); } .rk-meter.hi .rk-lab { color: var(--red-light); }
+        .gl-line { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); margin-top: 14px; max-width: 1120px; }
+        .gl-line b { color: #fff; }
+
+        /* Е: тайлове */
+        .tile { padding: 14px 16px 16px; }
+        .tile-em { font-size: 30px; line-height: 1.2; margin-bottom: 6px; }
+        .tile b { font-size: 17px; }
+
+        /* Ж: задача -> функция */
+        .t1-table.compact td { padding: 10px 18px; font-size: 17px; }
+        .t1-table.compact td:first-child::after { content: '\2192'; float: right; color: var(--red-light); font-weight: 700; margin-left: 10px; }
+        .t1-table.compact td:first-child { width: 52%; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .an-btn { display: none; }
+            .an-root *, .an-root *::before, .an-root *::after { transition: none !important; }
+            .an-root .at.in { animation: none !important; }
+        }
+
+        .pr-l .pu { display: inline-block; min-width: 30px; text-align: center; font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; line-height: 24px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); }
     </style>
 </head>
 
@@ -321,12 +464,12 @@
                     <div class="meta-item">ТЕМА // <span>1 от 4</span></div>
                 </div>
             </div>
-            <div class="slide-number mono">01 / 17</div>
+            <div class="slide-number mono">01 / 24</div>
         </div>
 
         <div class="slide bg-dark" data-slide="1">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">02 / 17</div>
+            <div class="slide-number mono">02 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Основи</div>
                 <h2 class="anim-up anim-up-d1">Как работи езиковият модел</h2>
@@ -342,9 +485,90 @@
             <div class="big-number">02</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="2">
+        <div class="slide bg-dark" data-slide="2" data-anim="train">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">03 / 17</div>
+            <div class="slide-number mono">03 / 24</div>
+            <button class="an-btn" type="button" tabindex="-1">↻ Пусни отново</button>
+            <div class="content-block an-root">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1 h2s">Как се обучава моделът</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="anim-up anim-up-d3">
+                    <div class="tr-pillrow"><span class="tr-pill">Преминаване 2 от 2</span></div>
+                    <div class="tr-pipe">
+                        <div class="tr-box"><div class="tr-h">Текст от обучението</div><div class="tr-body">Столицата на България е <span class="tr-slot"></span></div></div>
+                        <div class="tr-box"><div class="tr-h">Моделът познава</div><div class="tr-body"><div class="tr-guess on">София</div><div class="tr-sub">думата, която моделът предвижда</div></div></div>
+                        <div class="tr-box"><div class="tr-h">Сравнение</div><div class="tr-body"><div class="tr-row3">Моделът: <b class="tr-g3">София</b> <span class="tr-mark on ok">✓</span></div><div class="tr-row3 tr-real on">Истина: <b>София</b></div></div></div>
+                        <div class="tr-box"><div class="tr-h">Корекция</div><div class="tr-body"><div class="sl"><i class="sk" style="--p:38"></i></div><div class="sl"><i class="sk" style="--p:57"></i></div><div class="sl"><i class="sk" style="--p:51"></i></div><div class="sl"><i class="sk" style="--p:68"></i></div><div class="tr-cap4">няма нужда от корекция</div></div></div>
+                    </div>
+                    <div class="tr-caption on">Това се повтаря милиарди пъти върху огромно количество текст.</div>
+                    <div class="tr-steps">
+                        <div class="tr-st"><b>1 · Обучение:</b> предвижда следващата дума и се коригира</div>
+                        <div class="tr-st"><b>2 · Донастройка:</b> учи се да следва инструкции и да отказва вредни заявки</div>
+                        <div class="tr-st"><b>3 · Употреба:</b> моделът е „замразен"; знае света до датата на обучението си</div>
+                    </div>
+                    <div class="an-note" style="margin-top:10px;">Примерът е илюстративен.</div>
+                </div>
+            </div>
+            <div class="big-number">03</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="3" data-anim="tokens">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">04 / 24</div>
+            <button class="an-btn" type="button" tabindex="-1">↻ Пусни отново</button>
+            <div class="content-block an-root">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1 h2s">Токени: текстът на парчета</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="tk-wrap anim-up anim-up-d3">
+                    <div>
+                        <div class="tp-sent dim">Музеят открива нова изложба в събота.</div>
+                        <div class="tk-row"><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(61,74,158,0.75);--b:#7d8cf0">Музе</div><div class="tk-n">4821</div></div><div class="tk"><div class="tk-t" style="--c:rgba(220,78,64,0.45);--b:#e8736a">ят</div><div class="tk-n">307</div></div></div><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(74,222,128,0.28);--b:#4ade80">откри</div><div class="tk-n">9156</div></div><div class="tk"><div class="tk-t" style="--c:rgba(251,191,36,0.30);--b:#fbbf24">ва</div><div class="tk-n">52</div></div></div><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(167,139,250,0.35);--b:#a78bfa">нова</div><div class="tk-n">1873</div></div></div><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(61,74,158,0.75);--b:#7d8cf0">изложб</div><div class="tk-n">6640</div></div><div class="tk"><div class="tk-t" style="--c:rgba(220,78,64,0.45);--b:#e8736a">а</div><div class="tk-n">18</div></div></div><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(74,222,128,0.28);--b:#4ade80">в</div><div class="tk-n">77</div></div></div><div class="tk-w"><div class="tk"><div class="tk-t" style="--c:rgba(251,191,36,0.30);--b:#fbbf24">събот</div><div class="tk-n">3902</div></div><div class="tk"><div class="tk-t" style="--c:rgba(167,139,250,0.35);--b:#a78bfa">а</div><div class="tk-n">18</div></div><div class="tk"><div class="tk-t" style="--c:rgba(61,74,158,0.75);--b:#7d8cf0">.</div><div class="tk-n">13</div></div></div></div>
+                        <div class="tk-legend">Числото под всяко парче е негов идентификатор.</div>
+                        <div class="an-note" style="margin-top:8px;">Стойностите са илюстративни.</div>
+                    </div>
+                    <div class="tk-pts">
+                        <div class="pt">Моделът не вижда букви и думи, а токени: парчета от думи.</div>
+                        <div class="pt">Всеки токен е число; моделът смята с числа.</div>
+                        <div class="pt">Дължината на разговора и лимитите се мерят в токени.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="big-number">04</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="4" data-anim="gen">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">05 / 24</div>
+            <button class="an-btn" type="button" tabindex="-1">↻ Пусни отново</button>
+            <div class="content-block an-root">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1 h2s">Дума по дума: как се пише отговорът</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="gn-main anim-up anim-up-d3">
+                    <div class="ch-box">
+                        <div class="an-lab">Чат</div>
+                        <div class="ch-user">Столицата на България е</div>
+                        <div class="ch-ans"></div>
+                    </div>
+                    <div class="gn-right">
+                        <div class="pn">
+                            <div class="pn-hd"><b>Вероятни продължения</b><span class="an-lab gn-step">стъпка 7 от 7</span></div>
+                            <div class="pr-row"><span class="pr-l"></span><div class="pr-bar"><i></i></div><span class="pr-p"></span><span class="pr-t"></span></div><div class="pr-row"><span class="pr-l"></span><div class="pr-bar"><i></i></div><span class="pr-p"></span><span class="pr-t"></span></div><div class="pr-row"><span class="pr-l"></span><div class="pr-bar"><i></i></div><span class="pr-p"></span><span class="pr-t"></span></div><div class="pr-row"><span class="pr-l"></span><div class="pr-bar"><i></i></div><span class="pr-p"></span><span class="pr-t"></span></div>
+                        </div>
+                        <div class="gn-cap">Избира по вероятност: затова същият въпрос може да даде различен отговор.</div>
+                        <div class="an-note">Стойностите са илюстративни.</div>
+                    </div>
+                </div>
+                <p class="callout-line anim-up anim-up-d4" style="margin-top:12px;">Моделът не търси в база с факти. Продължава текста. Правдоподобно не значи вярно.</p>
+            </div>
+            <div class="big-number">05</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="5">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">06 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Основи</div>
                 <h2 class="anim-up anim-up-d1">От модел към чат асистент</h2>
@@ -357,12 +581,58 @@
                 <div class="metaphor anim-up anim-up-d4"><span style="display:flex; gap:6px; flex-wrap:wrap;"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/claude.svg" alt="Claude" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/bggpt-bright.svg" alt="BgGPT" style="height:18px"></span></span><span>ChatGPT, Claude, Gemini, Copilot, BgGPT: различни приложения върху различни модели, един и същ принцип.</span></div>
                 <p class="callout-line anim-up anim-up-d4">Колкото по-добър материал получи асистентът, толкова по-добър е отговорът.</p>
             </div>
-            <div class="big-number">03</div>
+            <div class="big-number">06</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="3">
+        <div class="slide bg-dark" data-slide="6">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">04 / 17</div>
+            <div class="slide-number mono">07 / 24</div>
+            <div class="content-block">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1 h2s">Чат, документи, агент и MCP</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="rk-row anim-up anim-up-d3">
+                    <div class="t1-card green rk-card"><div class="rk-txt"><h3>Чат</h3><p class="rk-sub">Само отговаря</p><p>Вижда това, което вие му напишете или качите.</p></div><div class="rk-meter lo"><div class="rk-bar"><i></i></div><span class="rk-lab">Риск:<br>по-нисък</span></div></div>
+                    <div class="rk-arrow">→</div>
+                    <div class="t1-card blue rk-card"><div class="rk-txt"><h3>Вашите документи (RAG)</h3><p class="rk-sub">Чете, преди да отговори</p><p>Търси в папки и бази и отговаря с цитати от тях.</p></div><div class="rk-meter mid"><div class="rk-bar"><i></i></div><span class="rk-lab">Риск:<br>среден</span></div></div>
+                    <div class="rk-arrow">→</div>
+                    <div class="t1-card rk-card"><div class="rk-txt"><h3>Агент + конектори (MCP)</h3><p class="rk-sub">Действа от ваше име</p><p>Праща имейли, променя файлове, ползва календар и други системи.</p></div><div class="rk-meter hi"><div class="rk-bar"><i></i></div><span class="rk-lab">Риск:<br>по-висок</span></div></div>
+                </div>
+                <p class="gl-line anim-up anim-up-d4"><b>LLM:</b> моделът · <b>Чат асистент:</b> приложението около него · <b>RAG:</b> отговори от вашите документи · <b>MCP:</b> стандарт за връзка с инструменти (като USB-C) · <b>Агент:</b> сам изпълнява стъпките, вие одобрявате</p>
+                <p class="callout-line anim-up anim-up-d5">Повече правомощия означават повече риск. Давайте само достъпа, който задачата изисква.</p>
+            </div>
+            <div class="big-number">07</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="7">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">08 / 24</div>
+            <div class="content-block">
+                <div class="tag anim-up">Функции</div>
+                <h2 class="anim-up anim-up-d1 h2s">Какво могат асистентите днес</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="t1-grid c4 anim-up anim-up-d3"><div class="t1-chip tile"><div class="tile-em">✍️</div><b>Текст</b>писане, редакция, превод, резюме</div><div class="t1-chip tile"><div class="tile-em">🔎</div><b>Търсене в интернет</b>актуални данни с източници</div><div class="t1-chip tile"><div class="tile-em">📎</div><b>Файлове</b>PDF, Word, таблици, презентации</div><div class="t1-chip tile"><div class="tile-em">📷</div><b>Зрение</b>чете снимки, скенове, ръкопис</div><div class="t1-chip tile"><div class="tile-em">🎙</div><b>Глас</b>диктовка и разговор на глас</div><div class="t1-chip tile"><div class="tile-em">🖼</div><b>Изображения</b>създава и редактира картинки</div><div class="t1-chip tile"><div class="tile-em">📚</div><b>Deep Research</b>дълго проучване с доклад и източници</div><div class="t1-chip tile"><div class="tile-em">🧩</div><b>Документи и приложения</b>таблици, диаграми, малки инструменти</div></div>
+                <p class="callout-line anim-up anim-up-d4">Не всяка функция я има във всеки асистент и във всеки план: проверете при вход.</p>
+            </div>
+            <div class="big-number">08</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="8">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">09 / 24</div>
+            <div class="content-block">
+                <div class="tag anim-up">Функции</div>
+                <h2 class="anim-up anim-up-d1 h2s">Кой инструмент за коя задача</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <table class="t1-table compact anim-up anim-up-d3"><tr><th>Задача</th><th>Функция</th></tr><tr><td>Анотация за нова книга</td><td>текст, с ваши примери</td></tr><tr><td>Какво казва правилникът</td><td>файл или бележник с ваши документи</td></tr><tr><td>Актуална програма за финансиране</td><td>търсене или Deep Research</td></tr><tr><td>Стар афиш или инвентарен картон на снимка</td><td>зрение</td></tr><tr><td>Плакат за събитие</td><td>генериране на изображение</td></tr><tr><td>Посещаемост по месеци</td><td>таблица и графика</td></tr></table>
+                <p class="callout-line anim-up anim-up-d4">Изберете функцията според задачата, после проверете резултата.</p>
+            </div>
+            <div class="big-number">09</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="9">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">10 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Основи</div>
                 <h2 class="anim-up anim-up-d1">Какво следва от това</h2>
@@ -375,12 +645,12 @@
                 </div>
                 <p class="callout-line anim-up anim-up-d4">Днес: как да получаваме добри отговори и как да ги проверяваме.</p>
             </div>
-            <div class="big-number">04</div>
+            <div class="big-number">10</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="4">
+        <div class="slide bg-dark" data-slide="10">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">05 / 17</div>
+            <div class="slide-number mono">11 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Как работи</div>
                 <h2 class="anim-up anim-up-d1">Какво „знае" моделът и какво не</h2>
@@ -395,12 +665,37 @@
                     <div class="case-text"><b>Реален случай:</b> НАП въвежда вътрешен асистент на база BgGPT върху вътрешни документи и закони, на собствени сървъри, за 7 000+ служители; отговорите показват източници.<div class="src" style="margin-top:4px;">Източник: kik-info.com, 03.2026</div></div>
                 </div>
             </div>
-            <div class="big-number">05</div>
+            <div class="big-number">11</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="5">
+        <div class="slide bg-dark" data-slide="11" data-anim="ctx">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">06 / 17</div>
+            <div class="slide-number mono">12 / 24</div>
+            <button class="an-btn" type="button" tabindex="-1">↻ Пусни отново</button>
+            <div class="content-block an-root">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1 h2s">Контекстният прозорец</h2>
+                <div class="divider tight anim-up anim-up-d2"></div>
+                <div class="anim-up anim-up-d3">
+                    <div class="cw-head">
+                        <div class="cw-title">Контекстен прозорец: работната маса на модела</div>
+                        <div class="cw-meter">заето: <span class="cw-pct">100</span> %<span class="cw-bar"><i class="cw-fill"></i></span></div>
+                    </div>
+                    <div class="cw-frame"><div class="cw-track"></div></div>
+                    <div class="cw-old on">↑ най-старото отпада</div>
+                    <div class="cw-bot">
+                        <div class="cw-cap on">Затова дълъг чат „забравя" началото.</div>
+                        <div class="cw-tip"><span class="an-lab">Какво да правите</span>Нов чат за нова задача, с кратко резюме от предишния.</div>
+                    </div>
+                    <div class="an-note cw-foot">Стойностите са илюстративни.</div>
+                </div>
+            </div>
+            <div class="big-number">12</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="12">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">13 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Контекст</div>
                 <h2 class="anim-up anim-up-d1" style="font-size: 36px; margin-bottom: 8px;">Памет и контекст: защо чатът „забравя"</h2>
@@ -418,12 +713,12 @@
                 </div>
                 <p class="src anim-up anim-up-d4">Имената на настройките се сменят, проверете при вход.</p>
             </div>
-            <div class="big-number">06</div>
+            <div class="big-number">13</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="6">
+        <div class="slide bg-dark" data-slide="13">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">07 / 17</div>
+            <div class="slide-number mono">14 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Промпт 2.0: четирите части</h2>
@@ -438,12 +733,12 @@
                 <div class="prompt-box anim-up anim-up-d4"><span class="pl">Цел:</span> покана до училищата за образователна програма в музея.<br><span class="pl">Контекст:</span> за 5.–7. клас, свободни дати през декември, групи до 25 ученици.<br><span class="pl">Формат:</span> 6 изречения, учтиво, с краен срок за записване.<br><span class="pl">Източник:</span> [поставете описанието на програмата]</div>
                 <div class="discussion-prompt anim-up anim-up-d5" style="margin-top:16px; padding:12px 18px;"><div class="prompt-label">Колега-тест</div><div class="prompt-text">Би ли разбрал нов колега без контекст какво искате?</div></div>
             </div>
-            <div class="big-number">07</div>
+            <div class="big-number">14</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="7">
+        <div class="slide bg-dark" data-slide="14">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">08 / 17</div>
+            <div class="slide-number mono">15 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Покажете, не обяснявайте</h2>
@@ -455,24 +750,24 @@
                 </div>
                 <div class="prompt-box anim-up anim-up-d4"><span class="pl">Ето три наши анотации за нови книги (стил):</span><br>1. [пример 1] 2. [пример 2] 3. [пример 3]<br><span class="pl">Напиши четвърта в същия стил</span> за: [поставете данните за книгата].<br>Пиши в свързан текст, без шаблонни фрази.</div>
             </div>
-            <div class="big-number">08</div>
+            <div class="big-number">15</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="8">
+        <div class="slide bg-dark" data-slide="15">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">09 / 17</div>
+            <div class="slide-number mono">16 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Навици</div>
                 <h2 class="anim-up anim-up-d1">Четири трика, които спестяват време</h2>
                 <div class="divider anim-up anim-up-d2"></div>
                 <div class="t1-grid c2 anim-up anim-up-d3"><div class="t1-card"><h3>1 · План първо</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Дай ми план в 5 стъпки и изчакай одобрение."</span></div><div class="t1-card blue"><h3>2 · Нека пита</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Преди да отговориш, задай ми до 5 уточняващи въпроса."</span></div><div class="t1-card"><h3>3 · Тясна ревизия</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Промени само т. 3, останалото остава."</span></div><div class="t1-card blue"><h3>4 · Самопроверка</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Преди да завършиш, провери спрямо критериите: …"</span></div></div>
             </div>
-            <div class="big-number">09</div>
+            <div class="big-number">16</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="9">
+        <div class="slide bg-dark" data-slide="16">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">10 / 17</div>
+            <div class="slide-number mono">17 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Избор на режим</div>
                 <h2 class="anim-up anim-up-d1">Бърз или мислещ модел</h2>
@@ -485,12 +780,12 @@
                 <p class="callout-line anim-up anim-up-d4">По-бавно, но проверява стъпките.</p>
                 <p class="src anim-up anim-up-d4">Имената и плановете се различават, проверете в приложението.</p>
             </div>
-            <div class="big-number">10</div>
+            <div class="big-number">17</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="10">
+        <div class="slide bg-dark" data-slide="17">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">11 / 17</div>
+            <div class="slide-number mono">18 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">ChatGPT: модели и режими</h2>
@@ -499,12 +794,12 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Избор Auto / Instant / Thinking (етикетите проверете при вход)</span><span class="mm-chip">Deep Research</span><span class="mm-chip">Изображения</span><span class="mm-chip">Projects (и на Free)</span><span class="mm-chip">Tasks (платени планове)</span><span class="mm-chip">Агент режим (в ЕИП: проверете)</span></div>
                 <p class="src anim-up anim-up-d4">Източник: chatgpt.com/pricing, 11.2026</p>
             </div>
-            <div class="big-number">11</div>
+            <div class="big-number">18</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="11">
+        <div class="slide bg-dark" data-slide="18">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">12 / 17</div>
+            <div class="slide-number mono">19 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Claude: модели и режими</h2>
@@ -513,12 +808,12 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Нива на усилие: Low → Max</span><span class="mm-chip">Cowork и планирани задачи: платени планове (проверете при вход)</span><span class="mm-chip">Лимитите се нулират на 5 часа и седмично</span></div>
                 <p class="src anim-up anim-up-d4">Източник: anthropic.com/news, claude.com/pricing, 11.2026</p>
             </div>
-            <div class="big-number">12</div>
+            <div class="big-number">19</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="12">
+        <div class="slide bg-dark" data-slide="19">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">13 / 17</div>
+            <div class="slide-number mono">20 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Gemini: модели и режими</h2>
@@ -527,24 +822,24 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Етикетите на избора в приложението: проверете при вход</span></div>
                 <p class="src anim-up anim-up-d4">Източник: gemini.google/subscriptions, 11.2026</p>
             </div>
-            <div class="big-number">13</div>
+            <div class="big-number">20</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="13">
+        <div class="slide bg-dark" data-slide="20">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">14 / 17</div>
+            <div class="slide-number mono">21 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Copilot, BgGPT и Perplexity</h2>
                 <div class="mm-cols anim-up anim-up-d2"><div class="mm-col"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:22px"></span><h4>Copilot</h4><ul><li>Потребителски: Quick response, Smart (GPT-5), Think Deeper, Study and learn, Search</li><li>Microsoft 365 Copilot Chat: Auto / Quick / Think deeper и „Switch Model" (от 06.10.2026, проверете при вход)</li><li>Кой модел е отдолу: проверете при вход</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/bggpt-bright.svg" alt="BgGPT" style="height:22px"></span><h4>BgGPT</h4><ul><li>Версия 3.0, вероятно на база Gemma 3, създаден за български</li><li>Безплатен (по БНР, проверете при вход); без вход 5 съобщения, после вход с профил</li><li>Документи, изображения и глас: по описание на приложението, непотвърдено</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/perplexity.svg" alt="Perplexity" style="height:22px"></span><h4>Perplexity</h4><ul><li>Free: само режим „Best", без избор на модел</li><li>Pro: 7 модела, вкл. GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash</li><li>Max добавя Opus 5.5 и Gemini 4 Argon</li><li>Free: ограничен брой Pro Search</li></ul></div></div>
                 <p class="src anim-up anim-up-d4">Източници: microsoft.com, bggpt.ai, perplexity.ai, 11.2026</p>
             </div>
-            <div class="big-number">14</div>
+            <div class="big-number">21</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="14">
+        <div class="slide bg-dark" data-slide="21">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">15 / 17</div>
+            <div class="slide-number mono">22 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Сравнение на модели</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Как да сравняваме модели: Artificial Analysis</h2>
@@ -557,11 +852,11 @@
                 <p class="mm-note anim-up anim-up-d3">Друга гледна точка: arena.ai (LMArena), сляп вот на хора между два отговора.</p>
                 <p class="src anim-up anim-up-d4">Източник: artificialanalysis.ai, 05.11.2026</p>
             </div>
-            <div class="big-number">15</div>
+            <div class="big-number">22</div>
         </div>
 
-        <div class="slide bg-red" data-slide="15">
-            <div class="slide-number mono">16 / 17</div>
+        <div class="slide bg-red" data-slide="22">
+            <div class="slide-number mono">23 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Интерактивно</div>
                 <h2 class="anim-up anim-up-d1">Кое е най-добре?</h2>
@@ -592,29 +887,29 @@
                     </div>
                 </div>
             </div>
-            <div class="big-number" style="color: rgba(255,255,255,0.08);">16</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">23</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="16">
+        <div class="slide bg-dark" data-slide="23">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">17 / 17</div>
+            <div class="slide-number mono">24 / 24</div>
             <div class="content-block">
                 <div class="tag anim-up">Обобщение</div>
                 <h2 class="anim-up anim-up-d1">Какво запомняме</h2>
                 <div class="divider anim-up anim-up-d2"></div>
-                <ul class="recap-list anim-up anim-up-d3"><li><span class="check">✓</span> Моделът предвижда следващата дума: правдоподобно не значи вярно</li><li><span class="check">✓</span> Контекстът е работна маса: нов чат за нова задача, документът първо, въпросът накрая</li><li><span class="check">✓</span> Промпт 2.0: Цел, Контекст, Формат, Източник</li><li><span class="check">✓</span> Показвайте с примери и използвайте четирите трика</li><li><span class="check">✓</span> Бърз модел за чернови, мислещ режим за анализ и сметки</li></ul>
+                <ul class="recap-list anim-up anim-up-d3"><li><span class="check">✓</span> Моделът предвижда следващата дума: правдоподобно не значи вярно</li><li><span class="check">✓</span> Чат отговаря, документите дават основа, агентът действа: повече достъп, повече риск</li><li><span class="check">✓</span> Контекстът е работна маса: нов чат за нова задача, документът първо, въпросът накрая</li><li><span class="check">✓</span> Промпт 2.0: Цел, Контекст, Формат, Източник</li><li><span class="check">✓</span> Показвайте с примери и използвайте четирите трика</li><li><span class="check">✓</span> Бърз модел за чернови, мислещ режим за анализ и сметки</li></ul>
                 <button class="next-section-btn anim-up anim-up-d4" onclick="parent.postMessage({type:'next-section', sectionId:'sec-02'}, '*')">
                     Продължи към Тема 2 <span class="arrow">→</span>
                 </button>
             </div>
-            <div class="big-number">17</div>
+            <div class="big-number">24</div>
         </div>
 
     </div>
 
     <!-- Navigation -->
     <div class="nav-bar">
-        <div class="nav-info mono" id="navInfo">01 / 17</div>
+        <div class="nav-info mono" id="navInfo">01 / 24</div>
         <div class="nav-progress" id="navProgress"></div>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">←</button>
@@ -688,6 +983,234 @@
                 document.exitFullscreen();
             }
         }
+
+        // ── Анимирани илюстрации: регистър {слайд -> start/stop} ──
+        const ANIMS = new Map();
+        const HOLD = 5000;
+        const $ = (r, s) => r.querySelector(s);
+        const $$ = (r, s) => Array.from(r.querySelectorAll(s));
+        const reducedMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+        function makeAnim(slide, o) {
+            let timers = [], on = false;
+            const clear = () => { timers.forEach(clearTimeout); timers = []; };
+            function run(lead) {
+                clear();
+                o.reset();
+                if (reducedMotion()) { o.final(); return; }
+                const t = (ms, fn) => { timers.push(setTimeout(fn, lead + ms)); };
+                const end = o.play(t);
+                timers.push(setTimeout(() => run(500), lead + end + HOLD));
+            }
+            const a = {
+                start(lead) { on = true; run(lead === undefined ? 800 : lead); },
+                stop() { on = false; clear(); },
+                restart() { if (on) run(300); },
+                isOn() { return on; }
+            };
+            ANIMS.set(slide, a);
+            const btn = $(slide, '.an-btn');
+            if (btn) {
+                btn.addEventListener('mousedown', e => e.preventDefault());
+                btn.addEventListener('click', () => { btn.blur(); a.restart(); });
+            }
+            return a;
+        }
+
+        // А: обучение
+        function setupTrain(slide) {
+            const root = $(slide, '.an-root');
+            const boxes = $$(root, '.tr-box'), pill = $(root, '.tr-pill'), guess = $(root, '.tr-guess');
+            const g3 = $(root, '.tr-g3'), real = $(root, '.tr-real'), mark = $(root, '.tr-mark');
+            const cap4 = $(root, '.tr-cap4'), caption = $(root, '.tr-caption'), knobs = $$(root, '.sk');
+            const P0 = [30, 66, 44, 76], P1 = [38, 57, 51, 68];
+            const lit = i => boxes.forEach((b, k) => b.classList.toggle('lit', k === i));
+            const setKnobs = p => knobs.forEach((k, i) => k.style.setProperty('--p', p[i]));
+            function clearPass() {
+                guess.textContent = '?'; guess.className = 'tr-guess';
+                g3.textContent = '?'; real.classList.remove('on');
+                mark.textContent = ''; mark.className = 'tr-mark';
+                cap4.textContent = '';
+            }
+            function pass(t, o, n, w, ok) {
+                t(o, () => { clearPass(); pill.textContent = 'Преминаване ' + n + ' от 2'; lit(0); });
+                t(o + 1300, () => { lit(1); guess.textContent = w; guess.classList.add('on'); });
+                t(o + 2700, () => { lit(2); g3.textContent = w; real.classList.add('on'); });
+                t(o + 3900, () => { mark.textContent = ok ? '✓' : '✗'; mark.className = 'tr-mark on ' + (ok ? 'ok' : 'bad'); });
+                t(o + 5100, () => { lit(3); cap4.textContent = ok ? 'няма нужда от корекция' : 'малки настройки на модела'; if (!ok) setKnobs(P1); });
+                return o + 6500;
+            }
+            makeAnim(slide, {
+                reset() { lit(-1); clearPass(); setKnobs(P0); caption.classList.remove('on'); pill.textContent = 'Преминаване 1 от 2'; },
+                final() {
+                    lit(-1); pill.textContent = 'Преминаване 2 от 2';
+                    guess.textContent = 'София'; guess.className = 'tr-guess on';
+                    g3.textContent = 'София'; real.classList.add('on');
+                    mark.textContent = '✓'; mark.className = 'tr-mark on ok';
+                    cap4.textContent = 'няма нужда от корекция'; setKnobs(P1); caption.classList.add('on');
+                },
+                play(t) {
+                    const e1 = pass(t, 0, 1, 'Пловдив', false);
+                    const e2 = pass(t, e1 + 400, 2, 'София', true);
+                    t(e2, () => { lit(-1); });
+                    t(e2 + 300, () => caption.classList.add('on'));
+                    return e2 + 1500;
+                }
+            });
+        }
+
+        // Б: токени
+        function setupTokens(slide) {
+            const root = $(slide, '.an-root');
+            const tks = $$(root, '.tk'), pts = $$(root, '.pt'), sent = $(root, '.tp-sent');
+            makeAnim(slide, {
+                reset() {
+                    root.classList.add('armed'); root.classList.remove('nums');
+                    tks.forEach(x => x.classList.remove('on')); pts.forEach(x => x.classList.remove('on'));
+                    sent.classList.remove('dim');
+                },
+                final() { root.classList.remove('armed'); sent.classList.add('dim'); },
+                play(t) {
+                    t(300, () => sent.classList.add('dim'));
+                    tks.forEach((x, i) => t(600 + i * 340, () => x.classList.add('on')));
+                    const e = 600 + tks.length * 340 + 500;
+                    t(e, () => root.classList.add('nums'));
+                    pts.forEach((p, i) => t(e + 1300 + i * 1400, () => p.classList.add('on')));
+                    return e + 1300 + pts.length * 1400 + 600;
+                }
+            });
+        }
+
+        // В: дума по дума
+        function setupGen(slide) {
+            const root = $(slide, '.an-root');
+            const GEN = [
+                { c: [['София', 92], ['Пловдив', 4], ['Велико', 2], ['голям', 1]], p: 0 },
+                { c: [['.', 61, 'точка'], [',', 27, 'запетая'], ['и', 8], ['–', 2, 'тире']], p: 1 },
+                { c: [['най-големият', 54], ['град', 21], ['разположена', 13], ['която', 7]], p: 0 },
+                { c: [['град', 88], ['център', 6], ['и', 3], ['български', 1]], p: 0 },
+                { c: [['в', 71], ['на', 14], ['.', 9, 'точка'], ['и', 3]], p: 0 },
+                { c: [['страната', 83], ['България', 11], ['Европа', 3], ['света', 1]], p: 0 },
+                { c: [['.', 94, 'точка'], [',', 3, 'запетая'], ['и', 2], ['–', 1, 'тире']], p: 0 }
+            ];
+            const NOSP = { 0: 1, 1: 1, 6: 1 };
+            const ans = $(root, '.ch-ans'), stepNo = $(root, '.gn-step');
+            const rows = $$(root, '.pr-row').map(r => ({ row: r, l: $(r, '.pr-l'), bar: $(r, '.pr-bar i'), p: $(r, '.pr-p'), t: $(r, '.pr-t') }));
+            function prep(k) {
+                const s = GEN[k];
+                stepNo.textContent = 'стъпка ' + (k + 1) + ' от 7';
+                rows.forEach((r, i) => {
+                    const c = s.c[i];
+                    r.row.className = 'pr-row';
+                    r.bar.style.transition = 'none'; r.bar.style.width = '0%';
+                    r.l.innerHTML = c[2] ? '<span class="pu">' + c[0] + '</span><small>' + c[2] + '</small>' : c[0];
+                    r.p.textContent = ''; r.t.textContent = '';
+                });
+                void root.offsetWidth;
+                rows.forEach(r => { r.bar.style.transition = ''; });
+            }
+            function grow(k, instant) {
+                rows.forEach((r, i) => {
+                    const v = GEN[k].c[i][1];
+                    if (instant) r.bar.style.transition = 'none';
+                    r.bar.style.width = Math.max(v, 2) + '%';
+                    r.p.textContent = v + ' %';
+                });
+            }
+            function top(k) { rows[0].row.classList.add('top'); if (GEN[k].p !== 0) rows[0].t.textContent = 'най-вероятен'; }
+            function pick(k) { const r = rows[GEN[k].p]; r.row.classList.remove('top'); r.row.classList.add('pick'); r.t.textContent = 'избран ✓'; }
+            function addTok(k, anim) {
+                $$(ans, '.new').forEach(x => x.classList.remove('new'));
+                const s = document.createElement('span');
+                s.className = 'at new' + (NOSP[k] ? '' : ' sp') + (anim ? ' in' : '');
+                s.textContent = GEN[k].c[GEN[k].p][0];
+                ans.appendChild(s);
+            }
+            makeAnim(slide, {
+                reset() { ans.innerHTML = ''; prep(0); stepNo.textContent = 'стъпка 1 от 7'; },
+                final() {
+                    ans.innerHTML = '';
+                    for (let k = 0; k < GEN.length; k++) addTok(k, false);
+                    $$(ans, '.new').forEach(x => x.classList.remove('new'));
+                    prep(6); grow(6, true); pick(6);
+                },
+                play(t) {
+                    let o = 400;
+                    for (let k = 0; k < GEN.length; k++) {
+                        const odd = GEN[k].p !== 0;
+                        t(o, () => prep(k));
+                        t(o + 100, () => grow(k, false));
+                        if (odd) t(o + 1100, () => top(k));
+                        const pk = o + (odd ? 2200 : 1100);
+                        t(pk, () => pick(k));
+                        t(pk + 800, () => addTok(k, true));
+                        o = pk + 1600;
+                    }
+                    t(o, () => $$(ans, '.new').forEach(x => x.classList.remove('new')));
+                    return o + 300;
+                }
+            });
+        }
+
+        // Г: контекстен прозорец
+        function setupCtx(slide) {
+            const root = $(slide, '.an-root');
+            const track = $(root, '.cw-track'), meter = $(root, '.cw-pct'), fill = $(root, '.cw-fill');
+            const old = $(root, '.cw-old'), cap = $(root, '.cw-cap');
+            const PITCH = 176, CAP = 6, KICK = { me: 'ВИЕ', ai: 'ОТГОВОР', doc: 'ДОКУМЕНТ' };
+            let list = [];
+            const used = () => list.reduce((a, c) => a + c.n, 0);
+            function layout() {
+                let s = 0;
+                list.forEach(c => { c.el.style.setProperty('--x', (s * PITCH) + 'px'); s += c.n; });
+                const pct = Math.round(s / CAP * 100);
+                meter.textContent = pct; fill.style.width = pct + '%';
+            }
+            function add(kind, label, n, animate) {
+                while (used() + n > CAP) {
+                    const o = list.shift();
+                    o.el.classList.add('drop'); old.classList.add('on');
+                }
+                const el = document.createElement('div');
+                el.className = 'cw-chip ' + kind;
+                el.innerHTML = '<span class="k">' + KICK[kind] + '</span><span class="m">' + label + '</span>';
+                if (animate) { el.style.setProperty('--x', '1200px'); el.style.transition = 'none'; }
+                else el.style.transition = 'none';
+                track.appendChild(el);
+                list.push({ el: el, n: n });
+                if (animate) { void el.offsetWidth; el.style.transition = ''; }
+                layout();
+            }
+            const SEQ = [['me', 'съобщение 1', 1], ['ai', 'отговор 1', 1], ['me', 'съобщение 2', 1], ['doc', '📎 качен документ', 2], ['ai', 'отговор 2', 1],
+                         ['me', 'съобщение 3', 1], ['ai', 'отговор 3', 1], ['me', 'съобщение 4', 1]];
+            makeAnim(slide, {
+                reset() { track.innerHTML = ''; list = []; old.classList.remove('on'); cap.classList.remove('on'); layout(); },
+                final() {
+                    SEQ.forEach(s => add(s[0], s[1], s[2], false));
+                    $$(track, '.drop').forEach(x => x.remove());
+                    old.classList.add('on'); cap.classList.add('on');
+                },
+                play(t) {
+                    SEQ.slice(0, 5).forEach((s, i) => t(i * 1200, () => add(s[0], s[1], s[2], true)));
+                    SEQ.slice(5).forEach((s, i) => t(6600 + i * 1900, () => add(s[0], s[1], s[2], true)));
+                    t(6600 + 3 * 1900 + 300, () => cap.classList.add('on'));
+                    return 6600 + 3 * 1900 + 1500;
+                }
+            });
+        }
+
+        const SETUP = { train: setupTrain, tokens: setupTokens, gen: setupGen, ctx: setupCtx };
+        slides.forEach(s => { const f = SETUP[s.dataset.anim]; if (f) f(s); });
+        const animObserver = new MutationObserver(muts => {
+            muts.forEach(m => {
+                const a = ANIMS.get(m.target);
+                if (!a) return;
+                const active = m.target.classList.contains('active');
+                if (active && !a.isOn()) a.start();
+                else if (!active && a.isOn()) a.stop();
+            });
+        });
+        slides.forEach(s => { if (ANIMS.has(s)) animObserver.observe(s, { attributes: true, attributeFilter: ['class'] }); });
 
         // Listen for parent messages
         window.addEventListener('message', (e) => {
