@@ -254,6 +254,8 @@
         .t1-table td:first-child { width: 42%; font-weight: 600; }
         .t1-table tr.fast td:first-child { border-left: 4px solid #4ade80; }
         .t1-table tr.think td:first-child { border-left: 4px solid var(--red); }
+        .prediction-demo { margin-top: 16px; padding: 14px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); max-width: 1180px; font-family: 'Space Mono', monospace; font-size: 17px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+        .prediction-demo .predicted { color: var(--red-light); border-bottom: 2px solid var(--red); padding-bottom: 2px; }
         .callout-line { margin-top: 16px; font-size: 17px; font-weight: 600; color: #fff; }
         .quiz-container .poll-options { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; max-width: 900px; grid-template-columns: none; }
         .quiz-container .poll-option { cursor: pointer; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); padding: 14px 20px; display: flex; align-items: center; gap: 16px; transition: border-color 0.2s, background 0.2s; }
@@ -313,37 +315,72 @@
                 <div class="tag anim-up" style="color: var(--off-white); border-bottom-color: var(--off-white);">Тема 1</div>
                 <h1 class="anim-up anim-up-d1">ИИ за потребители<br>без технически умения</h1>
                 <div class="divider anim-up anim-up-d2" style="background: var(--off-white); margin: 12px auto;"></div>
-                <p class="subtitle anim-up anim-up-d3" style="text-align: center;">От „питам чатбота" към „работя с асистент": промпт 2.0, контекст, памет</p>
+                <p class="subtitle anim-up anim-up-d3" style="text-align: center;">Как работят чат асистентите: модел, контекст, промпт 2.0, памет</p>
                 <div class="meta-strip anim-up anim-up-d4" style="justify-content: center;">
                     <div class="meta-item">МОДУЛ // <span>II</span></div>
                     <div class="meta-item">ТЕМА // <span>1 от 4</span></div>
                 </div>
             </div>
-            <div class="slide-number mono">01 / 15</div>
+            <div class="slide-number mono">01 / 17</div>
         </div>
 
         <div class="slide bg-dark" data-slide="1">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">02 / 15</div>
+            <div class="slide-number mono">02 / 17</div>
             <div class="content-block">
-                <div class="tag anim-up">Повторение</div>
-                <h2 class="anim-up anim-up-d1">Какво вече знаем от Модул I</h2>
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1">Как работи езиковият модел</h2>
                 <div class="divider anim-up anim-up-d2"></div>
-                <div class="t1-grid c4 anim-up anim-up-d3">
-                    <div class="t1-chip"><b>Платформите</b>Copilot, ChatGPT, Claude, Gemini, BgGPT
-                        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/claude.svg" alt="Claude" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:18px"></span></div></div>
-                    <div class="t1-chip"><b>Роля + контекст + формат</b>Как се формулира добра заявка към асистента</div>
-                    <div class="t1-chip"><b>Халюцинациите се проверяват</b>Правдоподобно не значи вярно: числата и източниците се проверяват</div>
-                    <div class="t1-chip"><b>Какво не се качва</b>Лични данни на читатели, посетители и зрители и непубликувани материали не се качват в безплатни инструменти</div>
+                <p class="subtitle anim-up anim-up-d2" style="font-size: 17px; margin-bottom: 6px;">Зад ChatGPT, Claude, Gemini и BgGPT стои голям езиков модел (LLM).</p>
+                <div class="t1-grid c3 anim-up anim-up-d3">
+                    <div class="t1-card"><h3>🔮 Предвижда следващата дума</h3><p>По текста дотук избира най-вероятното продължение, дума по дума, хиляди пъти.</p></div>
+                    <div class="t1-card blue"><h3>📚 Обучен е върху огромно количество текст</h3><p>Книги, сайтове, статии: оттам идват езикът и общите знания, до датата на обучението.</p></div>
+                    <div class="t1-card green"><h3>⚡ Не „знае", а предвижда</h3><p>Няма съзнание и не проверява фактите сам. Резултатът звучи убедително дори когато е грешен.</p></div>
                 </div>
-                <p class="callout-line anim-up anim-up-d4">Днес: как да сме добри в това.</p>
+                <div class="prediction-demo anim-up anim-up-d4">„Столицата на България е <span class="predicted">София</span>. Тя е и най-<span class="predicted">големият</span> град в страната."</div>
             </div>
             <div class="big-number">02</div>
         </div>
 
         <div class="slide bg-dark" data-slide="2">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">03 / 15</div>
+            <div class="slide-number mono">03 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1">От модел към чат асистент</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+                <div class="t1-grid c3 anim-up anim-up-d3">
+                    <div class="t1-card"><h3>Моделът</h3><p>предвижда текст; сам не помни нищо между разговорите</p></div>
+                    <div class="t1-card blue"><h3>Приложението</h3><p>чат прозорецът: пази разговора, добавя инструкции, показва отговора</p></div>
+                    <div class="t1-card green"><h3>Инструментите</h3><p>търсене в интернет, файлове, снимки, глас, конектори</p></div>
+                </div>
+                <div class="metaphor anim-up anim-up-d4"><span style="display:flex; gap:6px; flex-wrap:wrap;"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/chatgpt.svg" alt="ChatGPT" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/claude.svg" alt="Claude" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/gemini.svg" alt="Gemini" style="height:18px"></span><span class="logo-chip"><img src="assets/logos/bggpt-bright.svg" alt="BgGPT" style="height:18px"></span></span><span>ChatGPT, Claude, Gemini, Copilot, BgGPT: различни приложения върху различни модели, един и същ принцип.</span></div>
+                <p class="callout-line anim-up anim-up-d4">Колкото по-добър материал получи асистентът, толкова по-добър е отговорът.</p>
+            </div>
+            <div class="big-number">03</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="3">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">04 / 17</div>
+            <div class="content-block">
+                <div class="tag anim-up">Основи</div>
+                <h2 class="anim-up anim-up-d1">Какво следва от това</h2>
+                <div class="divider anim-up anim-up-d2"></div>
+                <div class="t1-grid c4 anim-up anim-up-d3">
+                    <div class="t1-chip"><b>Халюцинации</b>Правдоподобно не значи вярно: имена, дати, числа и източници се проверяват.</div>
+                    <div class="t1-chip"><b>Различни отговори</b>Същият въпрос може да даде различен отговор: моделът избира по вероятност.</div>
+                    <div class="t1-chip"><b>Заявката решава</b>Ясна цел, контекст и формат дават по-добър резултат от кратък въпрос.</div>
+                    <div class="t1-chip"><b>Какво не се качва</b>Лични данни на читатели, посетители и зрители и непубликувани материали не се качват в безплатни инструменти.</div>
+                </div>
+                <p class="callout-line anim-up anim-up-d4">Днес: как да получаваме добри отговори и как да ги проверяваме.</p>
+            </div>
+            <div class="big-number">04</div>
+        </div>
+
+        <div class="slide bg-dark" data-slide="4">
+            <div class="accent-corner top-left"></div>
+            <div class="slide-number mono">05 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Как работи</div>
                 <h2 class="anim-up anim-up-d1">Какво „знае" моделът и какво не</h2>
@@ -358,12 +395,12 @@
                     <div class="case-text"><b>Реален случай:</b> НАП въвежда вътрешен асистент на база BgGPT върху вътрешни документи и закони, на собствени сървъри, за 7 000+ служители; отговорите показват източници.<div class="src" style="margin-top:4px;">Източник: kik-info.com, 03.2026</div></div>
                 </div>
             </div>
-            <div class="big-number">03</div>
+            <div class="big-number">05</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="3">
+        <div class="slide bg-dark" data-slide="5">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">04 / 15</div>
+            <div class="slide-number mono">06 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Контекст</div>
                 <h2 class="anim-up anim-up-d1" style="font-size: 36px; margin-bottom: 8px;">Памет и контекст: защо чатът „забравя"</h2>
@@ -381,12 +418,12 @@
                 </div>
                 <p class="src anim-up anim-up-d4">Имената на настройките се сменят, проверете при вход.</p>
             </div>
-            <div class="big-number">04</div>
+            <div class="big-number">06</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="4">
+        <div class="slide bg-dark" data-slide="6">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">05 / 15</div>
+            <div class="slide-number mono">07 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Промпт 2.0: четирите части</h2>
@@ -401,12 +438,12 @@
                 <div class="prompt-box anim-up anim-up-d4"><span class="pl">Цел:</span> покана до училищата за образователна програма в музея.<br><span class="pl">Контекст:</span> за 5.–7. клас, свободни дати през декември, групи до 25 ученици.<br><span class="pl">Формат:</span> 6 изречения, учтиво, с краен срок за записване.<br><span class="pl">Източник:</span> [поставете описанието на програмата]</div>
                 <div class="discussion-prompt anim-up anim-up-d5" style="margin-top:16px; padding:12px 18px;"><div class="prompt-label">Колега-тест</div><div class="prompt-text">Би ли разбрал нов колега без контекст какво искате?</div></div>
             </div>
-            <div class="big-number">05</div>
+            <div class="big-number">07</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="5">
+        <div class="slide bg-dark" data-slide="7">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">06 / 15</div>
+            <div class="slide-number mono">08 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Промпт 2.0</div>
                 <h2 class="anim-up anim-up-d1">Покажете, не обяснявайте</h2>
@@ -418,24 +455,24 @@
                 </div>
                 <div class="prompt-box anim-up anim-up-d4"><span class="pl">Ето три наши анотации за нови книги (стил):</span><br>1. [пример 1] 2. [пример 2] 3. [пример 3]<br><span class="pl">Напиши четвърта в същия стил</span> за: [поставете данните за книгата].<br>Пиши в свързан текст, без шаблонни фрази.</div>
             </div>
-            <div class="big-number">06</div>
+            <div class="big-number">08</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="6">
+        <div class="slide bg-dark" data-slide="8">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">07 / 15</div>
+            <div class="slide-number mono">09 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Навици</div>
                 <h2 class="anim-up anim-up-d1">Четири трика, които спестяват време</h2>
                 <div class="divider anim-up anim-up-d2"></div>
                 <div class="t1-grid c2 anim-up anim-up-d3"><div class="t1-card"><h3>1 · План първо</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Дай ми план в 5 стъпки и изчакай одобрение."</span></div><div class="t1-card blue"><h3>2 · Нека пита</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Преди да отговориш, задай ми до 5 уточняващи въпроса."</span></div><div class="t1-card"><h3>3 · Тясна ревизия</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Промени само т. 3, останалото остава."</span></div><div class="t1-card blue"><h3>4 · Самопроверка</h3><span class="q" style="font-family:'Space Mono',monospace;font-size:13px;line-height:1.5;display:block;background:rgba(0,0,0,0.3);padding:10px 12px;color:#fff;">„Преди да завършиш, провери спрямо критериите: …"</span></div></div>
             </div>
-            <div class="big-number">07</div>
+            <div class="big-number">09</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="7">
+        <div class="slide bg-dark" data-slide="9">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">08 / 15</div>
+            <div class="slide-number mono">10 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Избор на режим</div>
                 <h2 class="anim-up anim-up-d1">Бърз или мислещ модел</h2>
@@ -448,12 +485,12 @@
                 <p class="callout-line anim-up anim-up-d4">По-бавно, но проверява стъпките.</p>
                 <p class="src anim-up anim-up-d4">Имената и плановете се различават, проверете в приложението.</p>
             </div>
-            <div class="big-number">08</div>
+            <div class="big-number">10</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="8">
+        <div class="slide bg-dark" data-slide="10">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">09 / 15</div>
+            <div class="slide-number mono">11 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">ChatGPT: модели и режими</h2>
@@ -462,12 +499,12 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Избор Auto / Instant / Thinking (етикетите проверете при вход)</span><span class="mm-chip">Deep Research</span><span class="mm-chip">Изображения</span><span class="mm-chip">Projects (и на Free)</span><span class="mm-chip">Tasks (платени планове)</span><span class="mm-chip">Агент режим (в ЕИП: проверете)</span></div>
                 <p class="src anim-up anim-up-d4">Източник: chatgpt.com/pricing, 11.2026</p>
             </div>
-            <div class="big-number">09</div>
+            <div class="big-number">11</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="9">
+        <div class="slide bg-dark" data-slide="11">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">10 / 15</div>
+            <div class="slide-number mono">12 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Claude: модели и режими</h2>
@@ -476,12 +513,12 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Нива на усилие: Low → Max</span><span class="mm-chip">Cowork и планирани задачи: платени планове (проверете при вход)</span><span class="mm-chip">Лимитите се нулират на 5 часа и седмично</span></div>
                 <p class="src anim-up anim-up-d4">Източник: anthropic.com/news, claude.com/pricing, 11.2026</p>
             </div>
-            <div class="big-number">10</div>
+            <div class="big-number">12</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="10">
+        <div class="slide bg-dark" data-slide="12">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">11 / 15</div>
+            <div class="slide-number mono">13 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Gemini: модели и режими</h2>
@@ -490,24 +527,24 @@
                 <div class="mm-chips anim-up anim-up-d3"><span class="mm-chip">Етикетите на избора в приложението: проверете при вход</span></div>
                 <p class="src anim-up anim-up-d4">Източник: gemini.google/subscriptions, 11.2026</p>
             </div>
-            <div class="big-number">11</div>
+            <div class="big-number">13</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="11">
+        <div class="slide bg-dark" data-slide="13">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">12 / 15</div>
+            <div class="slide-number mono">14 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Модели и режими</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Copilot, BgGPT и Perplexity</h2>
                 <div class="mm-cols anim-up anim-up-d2"><div class="mm-col"><span class="logo-chip"><img src="assets/logos/copilot.svg" alt="Copilot" style="height:22px"></span><h4>Copilot</h4><ul><li>Потребителски: Quick response, Smart (GPT-5), Think Deeper, Study and learn, Search</li><li>Microsoft 365 Copilot Chat: Auto / Quick / Think deeper и „Switch Model" (от 06.10.2026, проверете при вход)</li><li>Кой модел е отдолу: проверете при вход</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/bggpt-bright.svg" alt="BgGPT" style="height:22px"></span><h4>BgGPT</h4><ul><li>Версия 3.0, вероятно на база Gemma 3, създаден за български</li><li>Безплатен (по БНР, проверете при вход); без вход 5 съобщения, после вход с профил</li><li>Документи, изображения и глас: по описание на приложението, непотвърдено</li></ul></div><div class="mm-col"><span class="logo-chip"><img src="assets/logos/perplexity.svg" alt="Perplexity" style="height:22px"></span><h4>Perplexity</h4><ul><li>Free: само режим „Best", без избор на модел</li><li>Pro: 7 модела, вкл. GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash</li><li>Max добавя Opus 5.5 и Gemini 4 Argon</li><li>Free: ограничен брой Pro Search</li></ul></div></div>
                 <p class="src anim-up anim-up-d4">Източници: microsoft.com, bggpt.ai, perplexity.ai, 11.2026</p>
             </div>
-            <div class="big-number">12</div>
+            <div class="big-number">14</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="12">
+        <div class="slide bg-dark" data-slide="14">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">13 / 15</div>
+            <div class="slide-number mono">15 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Сравнение на модели</div>
                 <h2 class="anim-up anim-up-d1" style="font-size:clamp(26px,2.8vw,38px); margin-bottom:6px;">Как да сравняваме модели: Artificial Analysis</h2>
@@ -520,11 +557,11 @@
                 <p class="mm-note anim-up anim-up-d3">Друга гледна точка: arena.ai (LMArena), сляп вот на хора между два отговора.</p>
                 <p class="src anim-up anim-up-d4">Източник: artificialanalysis.ai, 05.11.2026</p>
             </div>
-            <div class="big-number">13</div>
+            <div class="big-number">15</div>
         </div>
 
-        <div class="slide bg-red" data-slide="13">
-            <div class="slide-number mono">14 / 15</div>
+        <div class="slide bg-red" data-slide="15">
+            <div class="slide-number mono">16 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Интерактивно</div>
                 <h2 class="anim-up anim-up-d1">Кое е най-добре?</h2>
@@ -555,29 +592,29 @@
                     </div>
                 </div>
             </div>
-            <div class="big-number" style="color: rgba(255,255,255,0.08);">14</div>
+            <div class="big-number" style="color: rgba(255,255,255,0.08);">16</div>
         </div>
 
-        <div class="slide bg-dark" data-slide="14">
+        <div class="slide bg-dark" data-slide="16">
             <div class="accent-corner top-left"></div>
-            <div class="slide-number mono">15 / 15</div>
+            <div class="slide-number mono">17 / 17</div>
             <div class="content-block">
                 <div class="tag anim-up">Обобщение</div>
                 <h2 class="anim-up anim-up-d1">Какво запомняме</h2>
                 <div class="divider anim-up anim-up-d2"></div>
-                <ul class="recap-list anim-up anim-up-d3"><li><span class="check">✓</span> Контекстът е работна маса: нов чат за нова задача, документът първо, въпросът накрая</li><li><span class="check">✓</span> Промпт 2.0: Цел, Контекст, Формат, Източник</li><li><span class="check">✓</span> Показвайте с примери и използвайте четирите трика</li><li><span class="check">✓</span> Бърз модел за чернови, мислещ режим за анализ и сметки</li></ul>
+                <ul class="recap-list anim-up anim-up-d3"><li><span class="check">✓</span> Моделът предвижда следващата дума: правдоподобно не значи вярно</li><li><span class="check">✓</span> Контекстът е работна маса: нов чат за нова задача, документът първо, въпросът накрая</li><li><span class="check">✓</span> Промпт 2.0: Цел, Контекст, Формат, Източник</li><li><span class="check">✓</span> Показвайте с примери и използвайте четирите трика</li><li><span class="check">✓</span> Бърз модел за чернови, мислещ режим за анализ и сметки</li></ul>
                 <button class="next-section-btn anim-up anim-up-d4" onclick="parent.postMessage({type:'next-section', sectionId:'sec-02'}, '*')">
                     Продължи към Тема 2 <span class="arrow">→</span>
                 </button>
             </div>
-            <div class="big-number">15</div>
+            <div class="big-number">17</div>
         </div>
 
     </div>
 
     <!-- Navigation -->
     <div class="nav-bar">
-        <div class="nav-info mono" id="navInfo">01 / 15</div>
+        <div class="nav-info mono" id="navInfo">01 / 17</div>
         <div class="nav-progress" id="navProgress"></div>
         <div class="nav-buttons">
             <button class="nav-btn" onclick="prevSlide()" title="Предишен слайд">←</button>
